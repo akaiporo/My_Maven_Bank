@@ -30,7 +30,7 @@ import tools.Tools;
 public class Account implements Serializable {
 	private static final long serialVersionUID = 1L;
 	/* VARIABLES */
-	private int id;
+	private int id; 
 	private String account_number;
 	private Date creation_date;
 	private double first_total;
