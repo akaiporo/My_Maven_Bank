@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="My_Bank_Web" transaction-type="RESOURCE_LOCAL">
+		<class>metier.Agency</class>
+		<class>metier.Account</class>
+		<class>metier.AccountType</class>
+		<class>metier.Address</class>
+		<class>metier.Advisor</class>
+		<class>metier.Bank</class>
+		<class>metier.Category</class>
+		<class>metier.CountryCode</class>
+		<class>metier.Owner</class>
+		<class>metier.PeriodicTransaction</class>
+		<class>metier.PeriodUnit</class>
+		<class>metier.TargetTransaction</class>
+		<class>metier.TransactionType</class>
+		<class>metier.Person</class>
+		<class>metier.CpCity</class>
+		<class>metier.Assign</class>
+		<class>metier.AssignPK</class>
+		<properties>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/my_personnal_bank?autoReconnect=true&amp;useSSL=false"/>
+			<property name="javax.persistence.jdbc.user" value="root"/>
+			<property name="javax.persistence.jdbc.user" value="root"/>
+			<property name="javax.persistence.jdbc.password" value=""/>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
+		</properties>
+	</persistence-unit>
+</persistence>
