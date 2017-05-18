@@ -25,7 +25,7 @@ public class basicServlet extends HttpServlet{
 		
 		
 		EntityManager em = emf.createEntityManager();
-		resp.getWriter().write("Servlet is OK");
+		resp.getWriter().write("Servlet is ");
 		
 	}
 	
