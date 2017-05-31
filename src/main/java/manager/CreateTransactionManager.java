@@ -15,6 +15,7 @@ public class CreateTransactionManager {
 	@PersistenceContext(unitName="MyBankPersistence")
 	private EntityManager em;
 	
+	
 	public List<Object> findAll() {
 		//List categories=em.createNamedQuery("Category.findAll").getResultList();
 		//System.out.println(((Category)categories.get(0)).getWording());
