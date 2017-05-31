@@ -11,7 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import manager.CreateTransactionManager;
+import model.Account;
 import model.Category;
+import model.TargetTransaction;
+import model.TransactionType;
 
 @WebServlet("/newTransaction")
 public class TransactionServlet extends HttpServlet {
@@ -28,7 +31,13 @@ public class TransactionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
 		List <Category> categories=createTransactionManager.findAllCategories();
+		List <TransactionType> transactionTypes=createTransactionManager.findAllTypes();
+		List <TargetTransaction> targets=createTransactionManager.findAllTargets();
+		List <Account> accounts=createTransactionManager.findAllAccounts();
+		req.setAttribute("accounts",accounts);
+		req.setAttribute("targets",targets);
 		req.setAttribute("categories", categories);
+		req.setAttribute("transactionTypes", transactionTypes);
 		getServletContext().getRequestDispatcher("/createTransaction.jsp").forward(req, resp);
 	}
 }

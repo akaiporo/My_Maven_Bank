@@ -14,6 +14,13 @@ import javax.persistence.Table;
 
 public class PeriodUnit {
 	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	
+	@Column(name="unit")
+	private String unit;
+	
 	public PeriodUnit(){
 	}
 
@@ -26,19 +33,17 @@ public class PeriodUnit {
 		this.unit=unit;
 	}
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
 	public int getId(){
 		return this.id;
 	}
 	public void setId(int val){
-		if(val <= 0){
+		/*if(val <= 0){
 			throw new IllegalArgumentException();
-		}
+		}*/
 		this.id = val;
 	}
 	
-	@Column(name="unit")
 	public String getUnit(){
 		return this.unit;
 	}
@@ -69,6 +74,4 @@ public class PeriodUnit {
 		return this.unit;
 	}
 	
-	private int id;
-	private String unit;
 }

@@ -46,15 +46,15 @@ public class CountryCode  implements Serializable {
 	}
 	
 	public void setCountryCode(String code){
-		if(code.length() != 2){
+		/*if(code.length() != 2){
 			throw new IllegalArgumentException("Le code pays doit contenir exactement deux chiffres");
-		}
+		}*/
 		this.countryCode = code;
 	}
 	public void setId(int val){
-		if(val <= 0){
+		/*if(val <= 0){
 			throw new IllegalArgumentException();
-		}
+		}*/
 		this.id = val;
 	}
 	

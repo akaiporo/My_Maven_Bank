@@ -50,19 +50,19 @@ public class Bank implements Serializable {
 		return this.id;
 	}
 	public void setId(int val){
-		if(val <=0){
+		/*if(val <=0){
 			throw new IllegalArgumentException("Id must be strictly superior to 0");
-		}
-		else this.id = val;
+		}*/
+		this.id = val;
 	}
 	
 	public String getBankName() {
 		return this.bank_name;
 	}
 	public void setBankName(String name){
-		if(name.isEmpty()) {
+		/*if(name.isEmpty()) {
 			throw new IllegalArgumentException("The bank name cannot be empty");
-		}
+		}*/
 		this.bank_name = name;
 	}
 	
@@ -70,9 +70,9 @@ public class Bank implements Serializable {
 		return this.bank_code;
 	}
 	public void setBankCode(String code){
-		if(code.isEmpty()) {
+		/*if(code.isEmpty()) {
 			throw new IllegalArgumentException ("The bank code cannot be empty");
-		}
+		}*/
 		this.bank_code = code;
 	}
 	

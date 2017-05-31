@@ -17,6 +17,15 @@ import tools.Tools;
 @Table(name="advisor")
 @NamedQuery(name="Advisor.findAll", query="SELECT ad FROM Advisor ad")
 public class Advisor extends Person {
+	
+	@Column(name="date_assignment")
+	@Temporal(TemporalType.DATE)
+	private Date date_assignment;
+	
+	@ManyToOne
+	@JoinColumn(name="id_agency")
+	private Agency agency;
+	
 	/**
 	 * 
 	 * @param name : 
@@ -48,31 +57,29 @@ public class Advisor extends Person {
 	public Advisor(){
 		super();
 	}
-	@Column(name="date_assignment")
-	@Temporal(TemporalType.DATE)
+	
 	public Date getDateAssignment() {
 		return this.date_assignment;
 	}
 	
 	public void setDateAssignment(Date date){
-		if(date == null) {
+		/*if(date == null) {
 			throw new NullPointerException("Date assignment cannot be null");
 		}
 		if(date.getTime() > Tools.today().getTime()) {  
 			throw new IllegalArgumentException ("Date assigment in the future");
-		}
+		}*/
 		this.date_assignment = date;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name="id_agency")
+	
 	public Agency getAgency() {
 		return this.agency;
 	}
 	public void setAgency(Agency agency){
-		if(agency == null) {
+		/*if(agency == null) {
 			throw new NullPointerException("Agency cannot be null");
-		}
+		}*/
 		this.agency = agency;
 	}
 	
@@ -111,7 +118,4 @@ public class Advisor extends Person {
 		return String.format("%s %s", getName(), this.getFirstName());
 	}
 	
-	private Date date_assignment;
-	private Agency agency;
-
 }

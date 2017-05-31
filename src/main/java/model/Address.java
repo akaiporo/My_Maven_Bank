@@ -44,9 +44,9 @@ public class Address {
 		return this.id;
 	}
 	public void setId(int val){
-		if(val <= 0){
+		/*if(val <= 0){
 			throw new IllegalArgumentException();
-		}
+		}*/
 		this.id = val;
 	}
 	
@@ -54,9 +54,9 @@ public class Address {
 		return this.line1;
 	} 
 	public void setLine1(String line1){
-		if(line1.isEmpty()) {
+		/*if(line1.isEmpty()) {
 			throw new IllegalArgumentException("The line1 cannot be empty");
-		}
+		}*/
 		this.line1 = line1;
 	}
 	public String getLine2() {
@@ -73,9 +73,9 @@ public class Address {
 		return this.cpCity;
 	}
 	public void setCpCity(CpCity cpc){
-		if(cpc == null){
+		/*if(cpc == null){
 			throw new NullPointerException("PostalCode and City can't be null");
-		}
+		}*/
 		this.cpCity = cpc;
 	}
 	

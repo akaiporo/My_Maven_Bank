@@ -19,6 +19,20 @@ import tools.Tools;
 
 public class Owner extends Person{
 	
+	@Column(name="birthdate")
+	@Temporal(TemporalType.DATE)
+	private Date birthdate;
+	
+	@Column(name="login")
+	private String login;
+	
+	@Column(name="pwd")
+	private String pwd;
+	
+	@ManyToOne
+	@JoinColumn(name="id_address")
+	private Address address;
+	
 	/**
 	 * Constructor
 	 * @param name : The owner name
@@ -57,50 +71,48 @@ public class Owner extends Person{
 	public Owner() {
 		super();
 	}
-	@Column(name="birthdate")
-	@Temporal(TemporalType.DATE)
+	
 	public Date getBirthdate() {
 		return this.birthdate;
 	}
 
 	public void setBirthdate(Date date){
-		if (date == null){
+		/*if (date == null){
 			throw new NullPointerException ("birthdate cannot be null");
 		}
 		if (date.getTime()>Tools.today().getTime()){
 			throw new IllegalArgumentException ("birthdate in the future");
-		}
+		}*/
 		this.birthdate = date;
 	}
-	@Column(name="login")
+	
 	public String getLogin() {
 		return this.login;
 	}
 	public void setLogin(String login){
-		if (login.isEmpty()){
+		/*if (login.isEmpty()){
 			throw new IllegalArgumentException ("login cannot be empty");
-		}
+		}*/
 		this.login = login;
 	}
-	@Column(name="pwd")
+	
 	public String getPwd() {
 		return this.pwd;
 	}
 	public void setPwd(String pwd){
-		if (pwd == null){
+		/*if (pwd == null){
 			pwd = "";
-		}
+		}*/
 		this.pwd = pwd;
 	}
-	@ManyToOne
-	@JoinColumn(name="id_address")
+	
 	public Address getAddress() {
 		return this.address;
 	}
 	public void setAddress(Address address){
-		if (address == null){
+		/*if (address == null){
 			throw new NullPointerException ("address cannot be null");
-		}
+		}*/
 		this.address = address;
 	}
 	@Override
@@ -141,12 +153,5 @@ public class Owner extends Person{
 	public String toString() {
 		return String.format("%s %s", getName(), this.getFirstName());
 	}
-	
-	private Date birthdate;
-	private String login;
-	private String pwd;
-	private Address address;
-	
-	
 
 }

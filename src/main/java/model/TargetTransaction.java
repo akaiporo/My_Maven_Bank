@@ -15,6 +15,17 @@ import javax.persistence.Table;
 	@NamedQuery(name="TargetTransaction.findAllName", query="SELECT a.targetName FROM TargetTransaction a")
 })
 public class TargetTransaction {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	
+	@Column(name="target_name")
+	private String target_name;
+	
+	@Column(name="IBAN")
+	private String IBAN;
+	
 
 	public TargetTransaction(){
 	}
@@ -33,8 +44,8 @@ public class TargetTransaction {
 		this.target_name=target_name;
 		this.IBAN=IBAN;
 	}
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
+	
 	public int getId() {
 		return this.id;
 	}
@@ -44,14 +55,14 @@ public class TargetTransaction {
 		}
 		this.id = val;
 	}
-	@Column(name="target_name")
+	
 	public String getTargetName(){
 		return this.target_name;
 	}
 	public void setTargetName(String name){
 		this.target_name = name;
 	}
-	@Column(name="IBAN")
+	
 	public String getIBAN(){
 		return this.IBAN;
 	}
@@ -82,9 +93,4 @@ public class TargetTransaction {
 	public String toString(){
 		return this.target_name;
 	}
-	
-	private int id;
-	private String target_name;
-	private String IBAN;
-
 }

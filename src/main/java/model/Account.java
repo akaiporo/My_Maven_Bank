@@ -124,9 +124,9 @@ public class Account implements Serializable {
 		return this.id;
 	}
 	public void setId(int val){
-		if(val <= 0){
+		/*if(val <= 0){
 			throw new IllegalArgumentException();
-		}
+		}*/
 		this.id = val;
 	}
 	
@@ -134,12 +134,12 @@ public class Account implements Serializable {
 		return this.account_number;
 	}
 	public void setAccountNumber(String number){
-		if(number.length() > 11){
+		/*if(number.length() > 11){
 			throw new IllegalArgumentException("Un num�ro de compte ne peut �tre sup�rieur � 11");
 		}
 		if(number.length() == 0){
 			throw new IllegalArgumentException("Un num�ro de compte ne peut �tre vide");
-		}
+		}*/
 		this.account_number = number;
 	}
 	
@@ -147,12 +147,12 @@ public class Account implements Serializable {
 		return this.creation_date;
 	}
 	public void setCreationDate(Date date){
-		if(date == null){
+		/*if(date == null){
 			throw new NullPointerException("La date de cr�ation ne peut �tre null");
 		}
 		if(date.getTime() > Tools.today().getTime()){
 			throw new IllegalArgumentException("La date de cr�ation ne peut �tre sup�rieure � la date du jour");
-		}
+		}*/
 		this.creation_date = date;
 	}
 	
@@ -167,10 +167,10 @@ public class Account implements Serializable {
 		return this.overdraft;
 	}
 	public void setOverdraft(int val){
-		if(val < 0){
+		/*if(val < 0){
 			throw new IllegalArgumentException("Le d�couvert autoris� ne peut �tre inf�rieur � 0."
 					+ "Le traitement en valeur n�gative sera effectu� plus tard");
-		}
+		}*/
 		this.overdraft = val;
 	}
 	
@@ -178,9 +178,9 @@ public class Account implements Serializable {
 		return this.interest_rate;
 	}
 	public void setInterestRate(double interest){
-		if(interest < 0){
+		/*if(interest < 0){
 			throw new IllegalArgumentException("Le taux d'int�r�t ne peut �tre inf�rieur � 0");
-		}
+		}*/
 		this.interest_rate = interest;
 	}
 	
@@ -189,9 +189,9 @@ public class Account implements Serializable {
 		return this.agency;
 	}
 	public void setAgency(Agency agency){
-		if(agency == null){
+		/*if(agency == null){
 			throw new NullPointerException("Un compte doit avoir une agence");
-		}
+		}*/
 		this.agency = agency;
 	}
 	
@@ -200,9 +200,9 @@ public class Account implements Serializable {
 		return this.countryCode;
 	}
 	public void setCountryCode(CountryCode country){
-		if(country == null){
+		/*if(country == null){
 			throw new NullPointerException("Un compte doit avoir un code pays");
-		}
+		}*/
 		this.countryCode = country;
 	}
 	
@@ -211,9 +211,9 @@ public class Account implements Serializable {
 		return this.accountType;
 	}
 	public void setAccountType(AccountType acc){
-		if(acc == null){
+		/*if(acc == null){
 			throw new NullPointerException("Un compte doit avoir un type de compte (�pargne, ch�que...");
-		}
+		}*/
 		this.accountType = acc;
 	}
 	

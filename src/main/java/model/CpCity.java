@@ -40,9 +40,9 @@ public class CpCity {
 	} 
 	
 	public void setId(int id){
-		if(id <= 0){
+		/*if(id <= 0){
 			throw new IllegalArgumentException("Id can't be null or negativ");
-		}
+		}*/
 		this.id = id;
 	}
 	
@@ -53,22 +53,22 @@ public class CpCity {
 	public String getPostalCode(){
 		return this.postalCode;
 	}
-	public String setPostalCode(String postalcode){
-		if(postalcode.length() != 5){
+	public void setPostalCode(String postalcode){
+		/*if(postalcode.length() != 5){
 			throw new IllegalArgumentException("Poste code must must contains 5 characters");
-		}
-		return this.postalCode = postalcode;
+		}*/
+		this.postalCode = postalcode;
 	}
 	
 	public String getCity(){
 		return this.city;
 	}
-	public String setCity(String city){
+	public void setCity(String city){
 		
-		if(city.length() == 0){
+		/*if(city.length() == 0){
 			throw new IllegalArgumentException("City can't be empty");
-		}
-		return this.city = city;
+		}*/
+		this.city = city;
 	}
 	
 	@Override

@@ -15,6 +15,21 @@ import javax.persistence.Table;
 @Table(name="agency")
 @NamedQuery(name="Agency.findAll", query="SELECT ag FROM Agency ag")
 public class Agency {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	@Column(name="agency_name")
+	private String agency_name;
+	@Column(name="counter_code")
+	private String counter_code;
+	@ManyToOne
+	@JoinColumn(name="id_address")
+	private Address address;
+	@ManyToOne
+	@JoinColumn(name="id_bank")
+	private Bank bank;
+	
 	/**
 	 * 
 	 * @param agency_name : 
@@ -53,9 +68,9 @@ public class Agency {
 	} 
 	
 	public void setId(int val){
-		if(val <= 0){
+		/*if(val <= 0){
 			throw new IllegalArgumentException();
-		}
+		}*/
 		this.id = val;
 	}
 	
@@ -63,9 +78,9 @@ public class Agency {
 		return this.agency_name;
 	}
 	public void setAgencyName(String name){
-		if(name.isEmpty()) {
+		/*if(name.isEmpty()) {
 			throw new IllegalArgumentException("The agency name cannot be empty");
-		}
+		}*/
 		this.agency_name = name;
 	}
 	
@@ -75,9 +90,9 @@ public class Agency {
 	}
 	
 	public void setCounterCode(String code){
-		if(code.length() != 5) {
+		/*if(code.length() != 5) {
 			throw new IllegalArgumentException("The counter code must cointain five caracters");
-		}
+		}*/
 		this.counter_code = code;
 	}
 	
@@ -85,9 +100,9 @@ public class Agency {
 		return this.address;
 	}
 	public void setAddress(Address add){
-		if(add == null) {
+		/*if(add == null) {
 			throw new NullPointerException("The agency address  cannot be null");
-		}
+		}*/
 		this.address = add;
 	}
 
@@ -95,9 +110,9 @@ public class Agency {
 		return this.bank;
 	}
 	public void setBank(Bank bank){
-		if(bank == null) {
+		/*if(bank == null) {
 			throw new NullPointerException("The bank cannot be null");
-		}
+		}*/
 		this.bank = bank;
 	}
 	@Override 
@@ -131,18 +146,4 @@ public class Agency {
 	public String toString() {
 		return this.agency_name;
 	}
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
-	@Column(name="agency_name")
-	private String agency_name;
-	@Column(name="counter_code")
-	private String counter_code;
-	@ManyToOne
-	@JoinColumn(name="id_address")
-	private Address address;
-	@ManyToOne
-	@JoinColumn(name="id_bank")
-	private Bank bank;
-
 }

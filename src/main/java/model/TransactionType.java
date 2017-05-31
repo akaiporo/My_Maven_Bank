@@ -22,7 +22,12 @@ public class TransactionType implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	/* VARIABLES */
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private int id;
+	
+	@Column(name="wording")
 	private String wording;
 	
 	/* CONSTRUCTORS */
@@ -39,12 +44,11 @@ public class TransactionType implements Serializable{
 	}
 	
 	/*GETTERS & SETTERS*/
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
 	public int getId(){
 		return this.id;
 	}
-	@Column(name="wording")
+	
 	public String getWording(){
 		return this.wording;
 	}
