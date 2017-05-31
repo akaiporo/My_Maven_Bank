@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
-@Stateless
 public interface Manager {
 	/**
 	 * Push l'objet 'o' en base
