@@ -27,7 +27,7 @@ public class Bank implements Serializable {
 
 /**
  * 
- * @param bank_name : 
+ * @param bank_name :  
  * @param bank_code : 
  */
 
