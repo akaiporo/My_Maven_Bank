@@ -1,7 +1,9 @@
 package controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -13,7 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 import manager.AccountManager;
 import manager.AgencyManager;
 import model.Account;
+import model.Address;
 import model.Agency;
+import model.Bank;
 import model.CountryCode;
 
 /**
@@ -31,14 +35,17 @@ public class AccountServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		List<Agency> agencies = new ArrayList<Agency>();
+		agencies.add(new Agency("agence 1", "125", new Address(), new Bank()));
+		request.setAttribute("agencies", agencies);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		List<Agency> agencies = agencyManager.findAll();
+		request.setAttribute("agencies", agencies);
 		String accountnumber = request.getParameter("accountnumber");
 		Date creationdate = new Date(request.getParameter("creationdate"));
 		double balance = Double.valueOf(request.getParameter("balance"));
