@@ -39,8 +39,7 @@ public class Address {
 	public Address(){
 		
 	}
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
 	public int getId() {
 		return this.id;
 	}
@@ -50,7 +49,7 @@ public class Address {
 		}
 		this.id = val;
 	}
-	@Column(name="line1")
+	
 	public String getLine1() {
 		return this.line1;
 	} 
@@ -60,7 +59,6 @@ public class Address {
 		}
 		this.line1 = line1;
 	}
-	@Column(name="line2")
 	public String getLine2() {
 		return this.line2;
 	}
@@ -70,8 +68,7 @@ public class Address {
 		}
 		else this.line2 = line2;
 	}
-	@ManyToOne
-	@JoinColumn(name="id_postalcode")
+	
 	public CpCity getCpCity() {
 		return this.cpCity;
 	}
@@ -99,10 +96,15 @@ public class Address {
 		}
 		else return false;
 	}
-	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	@Column(name="line1")
 	private String line1;
+	@Column(name="line2")
 	private String line2;
+	@ManyToOne
+	@JoinColumn(name="id_postalcode")
 	private CpCity cpCity;
 }
 		

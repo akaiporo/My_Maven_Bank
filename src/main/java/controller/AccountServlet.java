@@ -23,7 +23,7 @@ import model.CountryCode;
 /**
  * Servlet implementation class AccountServlet
  */
-@WebServlet("/Account.jsp")
+@WebServlet("/newAccount")
 public class AccountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@EJB
@@ -35,26 +35,10 @@ public class AccountServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Agency> agencies = new ArrayList<Agency>();
-		agencies.add(new Agency("agence 1", "125", new Address(), new Bank()));
-		request.setAttribute("agencies", agencies);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Agency> agencies = agencyManager.findAll();
 		request.setAttribute("agencies", agencies);
-		String accountnumber = request.getParameter("accountnumber");
-		Date creationdate = new Date(request.getParameter("creationdate"));
-		double balance = Double.valueOf(request.getParameter("balance"));
-		double interestrate = Double.valueOf(request.getParameter("interestrate"));
-		int overdraft = Integer.valueOf(request.getParameter("overdraft"));
-		//Agency agency = request.getParameter("agency");
-		//AccountType accounttype = request.getParameter("accounttype");
-		int alert = Integer.valueOf(request.getParameter("alert"));
-		//Account accountToSave = new Account(accountnumber, creationdate, balance, overdraft, interestrate, agency, new CountryCode("fr"),accounttype, alert);
+		getServletContext().getRequestDispatcher("/account-creation.jsp").forward(request, response);
 	}
+
 
 }

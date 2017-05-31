@@ -8,7 +8,7 @@
 <title>Création de compte</title>
 </head>
 <body>
-	<form action="" method="POST">
+	<form action="/account-creation.jsp" method="POST">
 		<label>Numéro de compte</label>
 		<input type='text' name='accountnumber' <c:out value=""></c:out>>
 		<label>Date de création</label>
@@ -22,7 +22,7 @@
 		<label>Agence</label>
 		<select name='agency'>
 			<c:forEach var="item" items="${agencies}">
-     			<option value="${item.id}">"${item}"</option>
+     			<option value="${item}">"${item}"</option>
     		</c:forEach>
 		</select>
 		<label>Type de compte</label>
@@ -30,7 +30,7 @@
 		</select>
 		<label>Seuil d'alerte(optionnel)</label>
 		<input type='number' name='alert' <c:out value=""></c:out>>
-		<button type='submit'></button>
+		<button type='submit'>Submit</button>
 	</form>
 </body>
 </html>

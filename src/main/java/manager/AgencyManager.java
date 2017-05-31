@@ -18,9 +18,6 @@ public class AgencyManager {
 	public List<Agency> findAll(){
 		List<Agency> items = em.createQuery("SELECT a from Agency a", Agency.class).getResultList();
 		System.out.println("SIIIIIZE : "+items.size());
-		for(Agency a : items){
-			System.out.println(a);
-		}
 		return items;
 	}
 	

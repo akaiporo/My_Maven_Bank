@@ -30,16 +30,33 @@ import tools.Tools;
 public class Account implements Serializable {
 	private static final long serialVersionUID = 1L;
 	/* VARIABLES */
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id; 
+	@Column(name="account_number")
 	private String account_number;
+	@Column(name="creation_date")
+	@Temporal(TemporalType.DATE)
 	private Date creation_date;
+	@Column(name="first_total")
 	private double first_total;
+	@Column(name="overdraft")
 	private int overdraft;
+	@Column(name="interest_rate")
 	private double interest_rate;
+	@ManyToOne
+	@JoinColumn(name="id_agency")
 	private Agency agency;
+	@ManyToOne
+	@JoinColumn(name="id_countrycode")
 	private CountryCode countryCode;
+	@ManyToOne
+	@JoinColumn(name="id_accounttype")
 	private AccountType accountType;
+	@OneToMany
+	@JoinColumn(name="id_account")
 	private List<PeriodicTransaction> transactions = new ArrayList<PeriodicTransaction>();
+	@Column(name="alert_thresh")
 	private int alert_thresh;
 	
 	/* CONSTRUCTORS */
@@ -102,8 +119,7 @@ public class Account implements Serializable {
 		
 	}
 	/* GETTERS & SETTERS */
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
 	public int getId(){
 		return this.id;
 	}
@@ -113,7 +129,7 @@ public class Account implements Serializable {
 		}
 		this.id = val;
 	}
-	@Column(name="account_number")
+	
 	public String getAccountNumber(){
 		return this.account_number;
 	}
@@ -126,8 +142,7 @@ public class Account implements Serializable {
 		}
 		this.account_number = number;
 	}
-	@Column(name="creation_date")
-	@Temporal(TemporalType.DATE)
+	
 	public Date getCreationDate(){
 		return this.creation_date;
 	}
@@ -140,14 +155,14 @@ public class Account implements Serializable {
 		}
 		this.creation_date = date;
 	}
-	@Column(name="first_total")
+	
 	public double getFirstTotal(){
 		return this.first_total;
 	}
 	public void setFirstTotal(double total){
 		this.first_total = total;
 	}
-	@Column(name="overdraft")
+	
 	public int getOverdraft(){
 		return this.overdraft;
 	}
@@ -158,7 +173,7 @@ public class Account implements Serializable {
 		}
 		this.overdraft = val;
 	}
-	@Column(name="interest_rate")
+	
 	public double getInterestRate(){
 		return this.interest_rate;
 	}
@@ -169,8 +184,7 @@ public class Account implements Serializable {
 		this.interest_rate = interest;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name="id_agency")
+	
 	public Agency getAgency(){
 		return this.agency;
 	}
@@ -181,8 +195,7 @@ public class Account implements Serializable {
 		this.agency = agency;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name="id_countrycode")
+	
 	public CountryCode getCountryCode(){
 		return this.countryCode;
 	}
@@ -193,8 +206,7 @@ public class Account implements Serializable {
 		this.countryCode = country;
 	}
 	
-	@ManyToOne
-	@JoinColumn(name="id_accounttype")
+	
 	public AccountType getAccountType(){
 		return this.accountType;
 	}
@@ -204,15 +216,14 @@ public class Account implements Serializable {
 		}
 		this.accountType = acc;
 	}
-	@Column(name="alert_thresh")
+	
 	public int getAlertThresh(){
 		return this.alert_thresh;
 	}
 	public void setAlertThresh(int alert){
 		this.alert_thresh = alert;
 	}
-	@OneToMany
-	@JoinColumn(name="id_account")
+	
 	public List<PeriodicTransaction> getTransactions() {
 		return this.transactions;
 	}

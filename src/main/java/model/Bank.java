@@ -16,8 +16,12 @@ import javax.persistence.Table;
 public class Bank implements Serializable {
 	private static final long serialVersionUID = 1L;
 	/*VARIABLES*/
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	@Column(name="bank_name")
 	private String bank_name;
+	@Column(name="bank_code")
 	private String bank_code;
 	
 
@@ -41,8 +45,7 @@ public class Bank implements Serializable {
 	public Bank() {
 		
 	}
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
 	public int getId() {
 		return this.id;
 	}
@@ -52,7 +55,7 @@ public class Bank implements Serializable {
 		}
 		else this.id = val;
 	}
-	@Column(name="bank_name")
+	
 	public String getBankName() {
 		return this.bank_name;
 	}
@@ -62,7 +65,7 @@ public class Bank implements Serializable {
 		}
 		this.bank_name = name;
 	}
-	@Column(name="bank_code")
+	
 	public String getBankCode() {
 		return this.bank_code;
 	}

@@ -16,9 +16,12 @@ import javax.persistence.Table;
 @NamedQuery(name="cpcity.findAllpostalcode", query ="SELECT p.postalCode FROM CpCity p")
 })
 public class CpCity {
-
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	@Column(name="postalcode")
 	private String postalCode;
+	@Column(name="city")
 	private String city;
 	
 	public CpCity(String postalcode, String city) {
@@ -42,12 +45,11 @@ public class CpCity {
 		}
 		this.id = id;
 	}
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
 	public int getId(){
 		return this.id;
 	}
-	@Column(name="postalcode")
+	
 	public String getPostalCode(){
 		return this.postalCode;
 	}
@@ -57,7 +59,7 @@ public class CpCity {
 		}
 		return this.postalCode = postalcode;
 	}
-	@Column(name="city")
+	
 	public String getCity(){
 		return this.city;
 	}

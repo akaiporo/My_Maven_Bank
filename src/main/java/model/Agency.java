@@ -47,8 +47,7 @@ public class Agency {
 	public Agency(){
 		
 	}
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
 	public int getId() {
 		return this.id;
 	} 
@@ -59,7 +58,7 @@ public class Agency {
 		}
 		this.id = val;
 	}
-	@Column(name="agency_name")
+	
 	public String getAgencyName() {
 		return this.agency_name;
 	}
@@ -70,7 +69,7 @@ public class Agency {
 		this.agency_name = name;
 	}
 	
-	@Column(name="counter_code")
+	
 	public String getCounterCode() {
 		return this.counter_code;
 	}
@@ -81,8 +80,7 @@ public class Agency {
 		}
 		this.counter_code = code;
 	}
-	@ManyToOne
-	@JoinColumn(name="id_address")
+	
 	public Address getAddress() {
 		return this.address;
 	}
@@ -92,8 +90,7 @@ public class Agency {
 		}
 		this.address = add;
 	}
-	@ManyToOne
-	@JoinColumn(name="id_bank")
+
 	public Bank getBank() {
 		return this.bank;
 	}
@@ -134,11 +131,18 @@ public class Agency {
 	public String toString() {
 		return this.agency_name;
 	}
-	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+	@Column(name="agency_name")
 	private String agency_name;
+	@Column(name="counter_code")
 	private String counter_code;
+	@ManyToOne
+	@JoinColumn(name="id_address")
 	private Address address;
+	@ManyToOne
+	@JoinColumn(name="id_bank")
 	private Bank bank;
 
 }
