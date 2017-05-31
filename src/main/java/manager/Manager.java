@@ -1,36 +1,9 @@
 package manager;
 
-import java.lang.instrument.IllegalClassFormatException;
-import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-import javax.ejb.Stateless;
 
-public interface Manager {
-	/**
-	 * Push l'objet 'o' en base
-	 * @param o
-	 */
-	public void save(Object o);
-	/**
-	 * Update l'objet 'o' contenant l'id passé
-	 * @param o
-	 * @param id
-	 */
-	public void save(Object o, int id);
-	/**
-	 * 
-	 * @param id
-	 * @return un objet 'o' contenant l'id passé
-	 */
-	public Object findById(int id);
-	/**
-	 * 
-	 * @param name
-	 * @return une liste d'objets 'o' de nom 'name'. 
-	 * Retourne une liste de 1 objet si plusieurs objets ont le même nom
-	 * @throws IllegalClassFormatException if the query return a list of non-macthing class object
-	 */
-	public List<Object> findByName(String name) throws IllegalClassFormatException;
+public abstract class Manager<T> {
 	
-	public List<Object> findAll();
 }

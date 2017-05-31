@@ -11,13 +11,12 @@ import javax.persistence.Query;
 import model.Account;
 
 @Stateless
-public class AccountManager implements Manager {
+public class AccountManager {
 
 	@PersistenceContext(unitName="MyBankPersistence")
 	private EntityManager em;
 	
-	@Override
-	public void save(Object o) {
+	public void save(Account o) {
 		if(o.getClass().equals(Account.class)){
 			em.persist(o);
 		}
@@ -26,30 +25,24 @@ public class AccountManager implements Manager {
 		}
 	}
 
-	@Override
 	/**
 	 * Sauvegarde en base un changement sur un compte
 	 */
-	public void save(Object o, int id) {
-		if(o.getClass().equals(Account.class)){
-			//Récupère le compte à modifier
-			Account currentAccount = (Account)(findById(id));
-			//Copy tout les éléments sauf l'id du nouveau compte vers l'ancien
-			currentAccount = copy((Account)o);
-			em.persist(currentAccount);
-		}
-		else{
-			throw new IllegalArgumentException(String.format("Can't save %s in the Account database table", o.getClass()));
-		}
+	public void save(Account o, int id) {
+		//Récupère le compte à modifier
+		Account currentAccount = (Account)(findById(id));
+		//Copy tout les éléments sauf l'id du nouveau compte vers l'ancien
+		currentAccount = copy((Account)o);
+		em.persist(currentAccount);
 	}
 
-	@Override
-	public Object findById(int id) {
+	
+	public Account findById(int id) {
 		return em.find(Account.class, id);
 	}
 
-	@Override
-	public List<Object> findByName(String name) throws IllegalClassFormatException {
+
+	public List<Account> findByName(String name) throws IllegalClassFormatException {
 		Query q =  em.createQuery("SELECT a from Account a where a.account_number = :name");
 		q.setParameter("name",name);
 		if(q.getResultList().contains(Account.class)){
@@ -66,8 +59,7 @@ public class AccountManager implements Manager {
 					a.getInterestRate(), a.getAgency(), a.getCountryCode(), a.getAccountType(), a.getAlertThresh());
 	}
 
-	@Override
-	public List<Object> findAll() {
+	public List<Account> findAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
