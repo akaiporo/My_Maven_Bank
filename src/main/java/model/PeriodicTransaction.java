@@ -19,18 +19,41 @@ import javax.persistence.TemporalType;
 public class PeriodicTransaction{
 
 	/* VARIABLES */
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id")
 	private int id;
+	@Column(name="wording")
 	private String wording;
+	@Column(name="transaction_value")
 	private Double transaction_value;
+	@Column(name="date_operation")
+	@Temporal(TemporalType.DATE)
 	private Date date_operation;
+	@Column(name="end_date_transaction")
+	@Temporal(TemporalType.DATE)
 	private Date end_date_transaction;
+	@Column(name="day_number")
 	private int day_number;
+	@Column(name="description")
 	private String description;
+	@ManyToOne
+	@JoinColumn(name="id_transactiontype")
 	private TransactionType transactionType;
+	@ManyToOne
+	@JoinColumn(name="id_targettransaction")
 	private TargetTransaction targetTransaction;
+	@ManyToOne
+	@JoinColumn(name="id_category")
 	private Category category;
+	@ManyToOne
+	@JoinColumn(name="id_periodunit")
 	private PeriodUnit periodUnit;
 	//Utile uniquement pour faire le lien avec la bdd
+	
+	@ManyToOne
+	@JoinColumn(name="id_account")
 	private Account account;
 
 	public PeriodicTransaction(){
@@ -96,19 +119,17 @@ public class PeriodicTransaction{
 	
 	/* GETTERS & SETTERS */
 	
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
 	public int getId(){
 		return this.id;
 	}
 	public void setId(int val){
-		if(val <= 0){
+		/*if(val <= 0){
 			throw new IllegalArgumentException();
-		}
+		}*/
 		this.id = val;
 	}
 	
-	@Column(name="wording")
 	public String getWording(){
 		return this.wording;
 	}
@@ -116,45 +137,39 @@ public class PeriodicTransaction{
 		this.wording = wording;
 	}
 	
-	@Column(name="transaction_value")
 	public double getTransactionValue(){
 		
 		return this.transaction_value;
 	}
 	public void setTransactionValue(Double val){
-		if(val == null){
+		/*if(val == null){
 			throw new NullPointerException("La valeur de la ligne ne peut �tre vide ou null");
-		}
+		}*/
 		this.transaction_value = val;
 	}
 	
-	@Column(name="date_operation")
-	@Temporal(TemporalType.DATE)
 	public Date getDateOperation(){
 		return this.date_operation;
 	}
-	
 	public void setDateOperation(Date date){
-		if(date == null){
+		/*if(date == null){
 			throw new NullPointerException("La date ne peut �tre null");
-		}
+		}*/
 		this.date_operation = date;
 	}
-	@Column(name="end_date_transaction")
-	@Temporal(TemporalType.DATE)
+	
 	public Date getEndDateTransaction(){
 		return this.end_date_transaction;
 	}
-	
 	public void setEndDateTransaction(Date date){
 		this.end_date_transaction = date;
 	}
-	@Column(name="day_number")
+	
 	public int getDayNumber(){
 		return this.day_number;
 	}
 	public void setDayNumber(int day){
-		if(day <= 0){
+		/*if(day <= 0){
 			throw new IllegalArgumentException("La cycle ne peut �tre n�gatif");
 		}
 		else if(this.getPeriodUnit() == null){
@@ -162,58 +177,53 @@ public class PeriodicTransaction{
 		}
 		if(day < 0){
 			throw new IllegalArgumentException("La cycle ne peut �tre n�gatif");
-		}
+		}*/
 		this.day_number = day;
 	}
-	@Column(name="description")
+	
 	public String getDescription(){
 		return this.description;
 	}
 	public void setDescription(String desc){
 		this.description = desc;
 	}
-	@ManyToOne
-	@JoinColumn(name="id_transactiontype")
+	
 	public TransactionType getTransactionType(){
 		return this.transactionType;
 	}
 	public void setTransactionType(TransactionType tt){
-		if(tt == null){
+		/*if(tt == null){
 			throw new NullPointerException("Le type ne peut �tre null");
-		}
+		}*/
 		this.transactionType = tt;
 	}
-	@ManyToOne
-	@JoinColumn(name="id_targettransaction")
+	
 	public TargetTransaction getTargetTransaction(){
 		return this.targetTransaction;
 	}
 	public void setTargetTransaction(TargetTransaction target){
-		if(target == null){
+		/*if(target == null){
 			throw new NullPointerException("La cible ne peut �tre null");
-		}
+		}*/
 		this.targetTransaction = target;
 	}
-	@ManyToOne
-	@JoinColumn(name="id_category")
+	
 	public Category getCategory(){
 		return this.category;
 	}
 	public void setCategory(Category cat){
-		if(cat == null){
+		/*if(cat == null){
 			throw new NullPointerException("La cat�gorie ne peut �tre null");
-		}
+		}*/
 		this.category = cat;
 	}
-	@ManyToOne
-	@JoinColumn(name="id_periodunit")
 	public PeriodUnit getPeriodUnit(){
 		return this.periodUnit;
 	}
 	public void setPeriodUnit(PeriodUnit pu){
-		if(this.day_number == 0){
+		/*if(this.day_number == 0){
 			throw new IllegalAccessError("Le num�ro de jour cyclique n'a pas �t� d�clar�. Utilisez la m�thod setPeriodParam()");
-		}
+		}*/
 		this.periodUnit = pu;
 	}
 	
@@ -223,17 +233,14 @@ public class PeriodicTransaction{
 	 * @param daynumber : Jour actif(3e jour de chaque mois, 6e jour de la semaine...)
 	 */
 	public void setPeriodParam(PeriodUnit pu, int daynumber){
-		if(pu != null && daynumber > 0){
+		/*if(pu != null && daynumber > 0){
 			this.periodUnit = pu;
 			this.day_number = daynumber;
 		}
-		else{
+		else{*/
 			throw new IllegalArgumentException("Le type de cycle et le jour actif doivent �tre tout les deux renseign�");
-		}
+		//}
 	}
-	
-	@ManyToOne
-	@JoinColumn(name="id_account")
 	public Account getAccount(){
 		return this.account;
 	}

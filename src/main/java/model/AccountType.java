@@ -19,9 +19,9 @@ public class AccountType {
 	
 	/* CONSTRUCTOR */
 	public AccountType(String account_type){
-		if(account_type.isEmpty()){
+		/*if(account_type.isEmpty()){
 			throw new IllegalArgumentException();
-		}
+		}*/
 		this.accountType = account_type;
 	}
 	public AccountType(){
@@ -39,15 +39,15 @@ public class AccountType {
 		return this.accountType;
 	}
 	public void setAccountType(String acc){
-		if(acc.isEmpty()){
+		/*if(acc.isEmpty()){
 			throw new IllegalArgumentException();
-		}
+		}*/
 		this.accountType = acc;
 	}
 	public void setId(int val){
-		if(val <= 0){
+		/*if(val <= 0){
 			throw new IllegalArgumentException();
-		}
+		}*/
 		this.id = val;
 	}
 	
