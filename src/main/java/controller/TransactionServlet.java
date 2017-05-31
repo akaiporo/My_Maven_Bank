@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import manager.CreateTransactionManager;
+import model.Category;
 
 @WebServlet("/newTransaction")
 public class TransactionServlet extends HttpServlet {
@@ -26,7 +27,7 @@ public class TransactionServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
-		List <Object> categories=createTransactionManager.findAll();
+		List <String> categories=createTransactionManager.findAll();
 		req.setAttribute("categories", categories);
 		getServletContext().getRequestDispatcher("/createTransaction.jsp").forward(req, resp);
 	}

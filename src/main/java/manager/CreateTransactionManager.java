@@ -6,6 +6,7 @@ import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import model.Category;
 
@@ -15,14 +16,17 @@ public class CreateTransactionManager {
 	@PersistenceContext(unitName="MyBankPersistence")
 	private EntityManager em;
 	
-	public List<Object> findAll() {
-		//List categories=em.createNamedQuery("Category.findAll").getResultList();
-		//System.out.println(((Category)categories.get(0)).getWording());
-		Category cat1=new Category("kigusf",null);
-		List<Object> cats = new ArrayList<Object>();
+	public List<String> findAll() {
+		Query q =  em.createQuery("SELECT pt.wording FROM Category pt", String.class);
+		return q.getResultList();
+		
+		/*Category cat1=new Category("kigusf",null);
+		List<Category> cats = new ArrayList<Category>();
 		cats.add(cat1);
 		
 		return cats; 
+		*/
+		
 		
 	}
 

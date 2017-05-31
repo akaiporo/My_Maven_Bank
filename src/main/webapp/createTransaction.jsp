@@ -42,7 +42,7 @@
 				<label>Categorie</label>
 				<select name="slct-category">
 					<c:forEach items="${categories}" var="p">
-				    	<option><c:out value="${p.wording}"/></option>
+				    	<option><c:out value="${p}"/></option>
 					 </c:forEach>
 				</select>
 			</div>
