@@ -1,5 +1,6 @@
 package manager;
 
+import java.lang.instrument.IllegalClassFormatException;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -27,6 +28,7 @@ public interface Manager {
 	 * @param name
 	 * @return une liste d'objets 'o' de nom 'name'. 
 	 * Retourne une liste de 1 objet si plusieurs objets ont le même nom
+	 * @throws IllegalClassFormatException if the query return a list of non-macthing class object
 	 */
-	public List<Object> findByName(String name);
+	public List<Object> findByName(String name) throws IllegalClassFormatException;
 }
