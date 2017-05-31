@@ -30,7 +30,7 @@
 				<label>Destinataire</label>
 				<select name="slct-type">
 					<c:forEach items="${transactionTypes}" var="p">
-				    	<option value="<c:out value="${p.wording}"/>"><option>
+				    	<option value="<c:out value="${p}"/>"><option>
 					 </c:forEach>
 				</select>
 			</div>
@@ -42,7 +42,7 @@
 				<label>Categorie</label>
 				<select name="slct-category">
 					<c:forEach items="${categories}" var="p">
-				    	<option><c:out value="${p}"/></option>
+				    	<option><c:out value="${p.wording}"/></option>
 					 </c:forEach>
 				</select>
 			</div>
@@ -54,7 +54,7 @@
 				<label>Type</label>
 				<select name="slct-type">
 					<c:forEach items="${transactionTypes}" var="p">
-				    	<option value="<c:out value="${p.wording}"/>"><option>
+				    	<option value="<c:out value="${p}"/>"><option>
 					 </c:forEach>
 				</select>
 			</div>

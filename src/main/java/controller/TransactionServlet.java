@@ -27,7 +27,7 @@ public class TransactionServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
-		List <String> categories=createTransactionManager.findAll();
+		List <Category> categories=createTransactionManager.findAllCategories();
 		req.setAttribute("categories", categories);
 		getServletContext().getRequestDispatcher("/createTransaction.jsp").forward(req, resp);
 	}

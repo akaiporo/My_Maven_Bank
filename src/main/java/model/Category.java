@@ -2,6 +2,7 @@ package model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +22,20 @@ import javax.persistence.Table;
 
 
 public class Category implements Serializable {
+	
 	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name = "id", nullable = false)
+	private int id;
+	
+	@Column(name = "wording", nullable = false)
+	private String wording;
+	
+	@ManyToOne
+	@JoinColumn(name="id_subCategory")
+	private Category category;
 
 	public Category(String wording,Category category) {
 	
@@ -34,8 +48,7 @@ public class Category implements Serializable {
 	public Category() {
 		
 	}
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	
 	public int getId() { 
 		return this.id;
 	}
@@ -48,8 +61,7 @@ public class Category implements Serializable {
 		}
 		this.wording = wording;
 	}
-	@ManyToOne
-	@JoinColumn(name="id_subCategory")
+	
 	public Category getCategory(){
 		return this.category;
 	}
@@ -94,7 +106,5 @@ public class Category implements Serializable {
 		return this.wording;
 	}
 	
-	private int id;
-	private String wording;
-	private Category category;
+	
 }
