@@ -16,18 +16,10 @@ public class CreateTransactionManager {
 	@PersistenceContext(unitName="MyBankPersistence")
 	private EntityManager em;
 	
-	public List<String> findAll() {
-		Query q =  em.createQuery("SELECT pt.wording FROM Category pt", String.class);
-		return q.getResultList();
-		
-		/*Category cat1=new Category("kigusf",null);
-		List<Category> cats = new ArrayList<Category>();
-		cats.add(cat1);
-		
-		return cats; 
-		*/
-		
-		
+	public List<Category> findAllCategories() {
+		Query q =  em.createNamedQuery("Category.findAllName", String.class);
+		Query z =  em.createNamedQuery("Category.findAll", Category.class);
+		return z.getResultList();
 	}
 
 }
