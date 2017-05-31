@@ -22,7 +22,7 @@ public class AccountManager implements Manager {
 			em.persist(o);
 		}
 		else{
-			throw new IllegalArgumentException(String.format("Can't save %s in the Account database table", o.getClass()));
+			throw new IllegalArgumentException(String.format("Can't save %s.class as an Account.class", o.getClass()));
 		}
 	}
 
@@ -50,9 +50,10 @@ public class AccountManager implements Manager {
 
 	@Override
 	public List<Object> findByName(String name) throws IllegalClassFormatException {
-		String query = String.format("SELECT a from Account a where a.account_number = %s", name);
-		if(em.createQuery(query).getResultList().contains(Account.class)){
-			return em.createQuery(query).getResultList();
+		Query q =  em.createQuery("SELECT a from Account a where a.account_number = :name");
+		q.setParameter("name",name);
+		if(q.getResultList().contains(Account.class)){
+			return q.getResultList();
 		}
 		else{
 			throw new IllegalClassFormatException("EntityManager query tried to return a list of non-Account object");
@@ -63,6 +64,12 @@ public class AccountManager implements Manager {
 	private Account copy(Account a){
 		return new Account(a.getAccountNumber(), a.getCreationDate(), a.getFirstTotal(), a.getOverdraft(),
 					a.getInterestRate(), a.getAgency(), a.getCountryCode(), a.getAccountType(), a.getAlertThresh());
+	}
+
+	@Override
+	public List<Object> findAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 

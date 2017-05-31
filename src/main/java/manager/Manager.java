@@ -31,4 +31,6 @@ public interface Manager {
 	 * @throws IllegalClassFormatException if the query return a list of non-macthing class object
 	 */
 	public List<Object> findByName(String name) throws IllegalClassFormatException;
+	
+	public List<Object> findAll();
 }
