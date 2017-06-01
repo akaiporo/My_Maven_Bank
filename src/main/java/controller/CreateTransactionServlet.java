@@ -67,5 +67,4 @@ public class CreateTransactionServlet extends HttpServlet {
 		}
 		resp.sendRedirect(req.getContextPath()+"/transactionList?account"+currentAccount.getId());
 	}
-	
 }
