@@ -61,11 +61,10 @@ public class TransactionServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp){
 		String wording = req.getParameter("wording");
 		String description=req.getParameter("description");
-		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yy hh:mm:ss");
-		System.out.println(req.getParameter("date"));
-		
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+
 		try {
-			Date dateOperation = sdf.parse(req.getParameter("date")+" 01:02:03");
+			Date dateOperation = sdf.parse(req.getParameter("date"));
 			System.out.println("success");
 			
 		} catch (ParseException e) {

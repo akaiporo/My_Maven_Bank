@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.ejb.EJB;
@@ -51,7 +53,13 @@ public class AccountDispatcher extends HttpServlet {
 		AccountType accounttype = accountTypeManager.findById(Integer.valueOf(request.getParameter("accounttype")));
 		CountryCode cc = countryCodeManager.findById(1);
 		String accountNumber = request.getParameter("accountnumber");
-		Date creationDate = new Date();//new Date(request.getParameter("creationdate"));
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date creationDate = new Date();
+		try {
+			creationDate = sdf.parse(request.getParameter("creationdate"));	
+		} catch (ParseException e) {
+			System.err.print("Failed to parse DATE object. Account has been created with today date");
+		}
 		double solde = Double.valueOf(request.getParameter("balance"));
 		double interest = Double.valueOf(request.getParameter("interestrate"));
 		int alert = Integer.valueOf(request.getParameter("alert"));
