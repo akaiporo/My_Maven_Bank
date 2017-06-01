@@ -8,24 +8,16 @@
 		<title>New transaction</title>
 	</head>
 	<body>
-		<h3>Nouvelle transaction :</h3>
+		<h3>Nouvelle transaction pour ${currentAccount}</h3>
 		<form method="POST" action="">
+			<input type='hidden' value="${param['account']}" name="account">
 			<div>
 				<label>Débit</label>
-				<input type="radio" name="rd-sign" id="moins" checked="checked">
+				<input type="radio" name="rd-sign" value="moins" checked="checked">
 				<label>Crédit</label>
-				<input type="radio" name="rd-sign" id="plus">
+				<input type="radio" name="rd-sign" value="plus">
 				<label>Montant*</label>
-				<input name="amount" type="number">
-			</div>
-			<div>
-				<input type='hidden' value="${param['account']}" name="account">
-				<label>Compte*</label>
-				<select name="slct-account">
-					<c:forEach items="${accounts}" var="p">
-						<option value="${p.id}">${p}</option>
-					 </c:forEach>
-				</select>
+				<input name="amount" type="number" step="0.01">
 			</div>
 			<div>
 				<label>Destinataire</label>

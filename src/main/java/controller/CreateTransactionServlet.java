@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Map;
-import java.util.Map.Entry;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -38,7 +36,7 @@ public class CreateTransactionServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
-		req.setAttribute("accounts",createTransactionManager.findAllAccounts());
+		req.setAttribute("currentAccount",accountManager.findById(Integer.valueOf(req.getParameter("account"))));
 		req.setAttribute("targets",createTransactionManager.findAllTargets());
 		req.setAttribute("categories",createTransactionManager.findAllCategories());
 		req.setAttribute("transactionTypes",createTransactionManager.findAllTypes());
@@ -47,12 +45,13 @@ public class CreateTransactionServlet extends HttpServlet {
 	
 	
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp){
-		Account currentAccount=accountManager.findById(Integer.valueOf(req.getParameter("account"))); // remplacer par Integer.valueOf(req.getParameter("account"))
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
+			throws ServletException, IOException{
+		Account currentAccount=accountManager.findById(Integer.valueOf(req.getParameter("account")));
 		
 		String wording = req.getParameter("wording");
 		String description=req.getParameter("description");
-		Double transactionValue=-100.15; //a remplacer avec la valeur rentrée
+		Double transactionValue=createTransactionManager.getAmount(req.getParameter("rd-sign"), req.getParameter("amount")); //a remplacer avec la valeur rentrée
 		Category category = createTransactionManager.findCatById(Integer.valueOf(req.getParameter("slct-category")));
 		TransactionType transactionType = createTransactionManager.findTypById(Integer.valueOf(req.getParameter("slct-type")));
 		TargetTransaction targetTransaction = createTransactionManager.findTarById(Integer.valueOf(req.getParameter("slct-target")));
@@ -66,5 +65,7 @@ public class CreateTransactionServlet extends HttpServlet {
 		} 
 		catch (ParseException e) {			
 		}
+		resp.sendRedirect(req.getContextPath()+"/transactionList?account"+currentAccount.getId());
 	}
+	
 }
