@@ -46,7 +46,7 @@ public class CreateTransactionServlet extends HttpServlet {
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp){
-		Account currentAccount=accountManager.findById(1); // remplacer par Integer.valueOf(req.getParameter("account"))
+		Account currentAccount=accountManager.findById(Integer.valueOf(req.getParameter("account"))); // remplacer par Integer.valueOf(req.getParameter("account"))
 		
 		String wording = req.getParameter("wording");
 		String description=req.getParameter("description");
