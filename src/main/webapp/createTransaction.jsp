@@ -16,7 +16,7 @@
 				<label>Crédit</label>
 				<input type="radio" name="rd-sign">
 				<label>Montant*</label>
-				<input name="transactionInteger" value="<c:out value="${param['transactionInteger']}"/>">,<input name="transactionFraction" maxlength="2" size="2" value="<c:out value="${param['transactionFraction']}"/>">
+				<input name="amount" type="number">
 			</div>
 			<div>
 				<label>Compte*</label>

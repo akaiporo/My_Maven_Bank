@@ -1,6 +1,7 @@
 package manager;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -10,6 +11,8 @@ import javax.persistence.Query;
 
 import model.Account;
 import model.Category;
+import model.PeriodUnit;
+import model.PeriodicTransaction;
 import model.TargetTransaction;
 import model.TransactionType;
 
@@ -33,6 +36,28 @@ public class CreateTransactionManager {
 
 	public List<Account> findAllAccounts() {
 		return em.createNamedQuery("Account.findAll", Account.class).getResultList();
+	}
+	
+	public void saveTransaction(String wording, Double transaction_value, Date date_operation, Date end_date_transaction,
+			  int day_number, String description, TransactionType transactionType, TargetTransaction targetTransaction, Category category,
+			  PeriodUnit periodUnit, Account account){
+		PeriodicTransaction saved=new PeriodicTransaction(wording, transaction_value,date_operation,end_date_transaction, 
+				day_number,description, transactionType,targetTransaction,category, periodUnit);
+		saved.setAccount(account);
+		em.persist(saved);
+	}
+	
+	public Category findCatById(int id){
+		return em.find(Category.class, id);
+	}
+	public Account findAccById(int id){
+		return em.find(Account.class, id);
+	}
+	public TargetTransaction findTarById(int id){
+		return em.find(TargetTransaction.class, id);
+	}
+	public TransactionType findTypById(int id){
+		return em.find(TransactionType.class, id);
 	}
 
 }
