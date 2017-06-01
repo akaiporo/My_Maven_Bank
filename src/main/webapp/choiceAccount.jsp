@@ -8,13 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="${contextPath}/choiceAccount" method="POST">
-		<select name='accounts'>
-			<c:forEach var="account" items="${accounts}">
-     			<option value="${account.id}">${account}</option>
-    		</c:forEach>
-		</select>
-		<button type='submit'>Selectionner</button>
-	</form>
+	<select onChange="window.location.href=this.value">
+		<c:forEach var="account" items="${accounts}">
+     		<option value="${contextPath}/choiceAccount?account=${account.id}">${account}</option>
+    	</c:forEach>
+	</select>
 </body>
 </html>

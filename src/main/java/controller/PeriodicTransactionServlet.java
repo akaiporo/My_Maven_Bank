@@ -27,8 +27,10 @@ public class PeriodicTransactionServlet extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		resp.setCharacterEncoding("utf-8");
 		
-		List <PeriodicTransaction> periodicTransaction = this.periodicTransactionManager.findAll();
-		req.setAttribute("periodicTransaction", periodicTransaction);
+		int id = Integer.valueOf(req.getParameter("account"));
+		System.out.println(id);
+		List <PeriodicTransaction> periodicTransactions = this.periodicTransactionManager.findAllByAccountId(id);
+		req.setAttribute("periodicTransaction", periodicTransactions);
 		req.getRequestDispatcher("/PeriodicTransaction.jsp").forward(req, resp);
 		
 	}
@@ -37,7 +39,8 @@ public class PeriodicTransactionServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
 		resp.setCharacterEncoding("utf-8");
-		
+		req.setAttribute("contextPath", getServletContext().getContextPath());
+		System.out.println(req.getAttribute("contextPath"));
 		periodicTransactionManager.DeleteTransaction(Integer.valueOf(req.getParameter("transaction")));
 		
 		

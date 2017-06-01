@@ -26,10 +26,11 @@ public class choiceAccountDispatcher extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		Account account = accountManager.findById(Integer.valueOf(req.getParameter("accounts")));
-		req.setAttribute("account", account);
-		getServletContext().getRequestDispatcher("/WEB-INF/account.jsp").forward(req, resp);
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		Account account = accountManager.findById(Integer.valueOf(req.getParameter("account")));
+		req.setAttribute("account", account.getId());
+		getServletContext().getRequestDispatcher("/transactionList").forward(req, resp);
 	}
+	
 
 }

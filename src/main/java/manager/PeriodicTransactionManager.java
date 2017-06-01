@@ -19,20 +19,19 @@ public class PeriodicTransactionManager {
 	private EntityManager em;
 	
 	public List<PeriodicTransaction> findAll() {
-		em.find(PeriodicTransaction.class, 1);
-				
-		Query q = em.createQuery("SELECT p FROM PeriodicTransaction p WHERE p.account = :account");
-		q.setParameter("account", em.find(Account.class,5)); //rechercher l'account par son id
-		 return q.getResultList();
+		Query q = em.createQuery("SELECT p FROM PeriodicTransaction p");
+		return q.getResultList();
 	}
 	
 	public void DeleteTransaction(int id) {
-		
 		PeriodicTransaction periodictransaction = em.find(PeriodicTransaction.class, id);
 		em.remove(periodictransaction);
-		
-		
-		
+	}
+	
+	public List<PeriodicTransaction> findAllByAccountId(int id){
+		Query q = em.createQuery("SELECT p FROM PeriodicTransaction p WHERE p.account = :account");
+		q.setParameter("account", em.find(Account.class,id)); //rechercher l'account par son id
+		return q.getResultList();
 	}
 	
 }

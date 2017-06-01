@@ -34,7 +34,7 @@
 				<td><c:out value="${p.transactionType}"/></td>
 				<td><c:out value="${p.category}"/></td>
 				<td>
-				<form method="post">
+				<form method="post" action="${contextPath}/transactionList">
 				<input type="hidden" name="transaction" value="<c:out value="${p.id}"/>"></input>
 				<button type="submit">Delete</button>
 				</form>
