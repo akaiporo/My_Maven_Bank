@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,9 @@
 		<label>Numéro de compte</label>
 		<label>"${account.accountNumber}"</label>
 		<label>Date de création</label>
-		<label>"${account.creationDate}"</label>
+		<label>
+		<jsp:useBean id="dateOperation" class="java.util.Date"/>
+		<fmt:formatDate value="${account.creationDate}" pattern="dd MMMM YYYY" type="date"/></label>
 		<label>Solde initial</label>
 		<label>"${account.firstTotal}"</label>
 		<label>Découvert autorisé</label>

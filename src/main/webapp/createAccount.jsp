@@ -8,7 +8,7 @@
 <title>Création de compte</title>
 </head>
 <body>
-	<form action="${contextPath}/accountDispatcher" method="POST">
+	<form action="<c:url value="/accountDispatcher"/>" method="POST">
 		<label>Numéro de compte</label>
 		<input type='text' name='accountnumber' <c:out value=""></c:out>>
 		<label>Date de création</label>

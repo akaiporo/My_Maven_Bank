@@ -43,5 +43,6 @@
 				</c:forEach>
 		</tbody>
 	</table>
+	<button onClick='window.location.href="<c:url value="/newTransaction?account=${account}"/>"'>Créer une transaction</button>	
 </body>
 </html>

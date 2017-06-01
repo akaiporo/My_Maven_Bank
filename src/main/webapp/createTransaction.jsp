@@ -12,13 +12,14 @@
 		<form method="POST" action="">
 			<div>
 				<label>Débit</label>
-				<input type="radio" name="rd-sign" checked="checked">
+				<input type="radio" name="rd-sign" id="moins" checked="checked">
 				<label>Crédit</label>
-				<input type="radio" name="rd-sign">
+				<input type="radio" name="rd-sign" id="plus">
 				<label>Montant*</label>
 				<input name="amount" type="number">
 			</div>
 			<div>
+				<input type='hidden' value="${account}" name="account">
 				<label>Compte*</label>
 				<select name="slct-account">
 					<c:forEach items="${accounts}" var="p">
