@@ -26,6 +26,7 @@ public class PeriodicTransactionServlet extends HttpServlet {
      @EJB
      private AccountManager accountManager;
 
+     
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("utf-8");
