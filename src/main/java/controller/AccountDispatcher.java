@@ -69,7 +69,7 @@ public class AccountDispatcher extends HttpServlet {
 		try{
 			accountManager.save(newAccount);
 			request.setAttribute("account", newAccount);
-			getServletContext().getRequestDispatcher("/WEB-INF/account.jsp").forward(request, response);
+			getServletContext().getRequestDispatcher("/choiceAccountServlet").forward(request, response);
 			
 		}catch(Exception e){
 			

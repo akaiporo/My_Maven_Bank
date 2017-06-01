@@ -65,6 +65,6 @@ public class CreateTransactionServlet extends HttpServlet {
 		} 
 		catch (ParseException e) {			
 		}
-		resp.sendRedirect(req.getContextPath()+"/transactionList?account"+currentAccount.getId());
+		resp.sendRedirect(req.getContextPath()+"/transactionList?account="+currentAccount.getId());
 	}
 }

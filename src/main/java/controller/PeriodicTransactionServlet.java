@@ -48,7 +48,7 @@ public class PeriodicTransactionServlet extends HttpServlet {
 		req.setAttribute("contextPath", getServletContext().getContextPath());
 		System.out.println(req.getAttribute("contextPath"));
 		periodicTransactionManager.DeleteTransaction(Integer.valueOf(req.getParameter("transaction")));
-		
+
 	}
 	
 }
