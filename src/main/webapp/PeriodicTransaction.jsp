@@ -9,32 +9,36 @@
 <title>Java EE</title>
 </head>
 <body>
+	<h3>Les opérations du compte...</h3>
 	<table>
 		<tbody>
 			<tr>
 				<th>Wording</th>
 				<th>Transaction Value</th>
 				<th>Operation Date</th>
-				<th>Transaction End Date</th>
-				<th>Day Number</th>
+				<th>Target Transaction</th>
 				<th>Description</th>
 				<th>Transaction Type</th>
 				<th>Category</th>
-				<th>Period Unit</th>
-				<th>Account</th>	
 			</tr>
 				<c:forEach items="${periodicTransaction}" var="p">
 			<tr>
 				<td><c:out value="${p.wording}" /></td>
-				<td><c:out value="${p.transaction_value}"/></td>
-				<td><c:out value="${p.date_operation}" /></td>
-				<td><c:out value="${p.end_date_transaction}"/></td>
-				<td><c:out value="${p.day_number}" /></td>
+				<td><c:out value="${p.transactionValue}"/></td>
+				<td>
+					<jsp:useBean id="dateOperation" class="java.util.Date"/>
+					<fmt:formatDate value="${p.dateOperation}" pattern="dd MMMM YYYY" type="date"/>
+				</td>
+				<td><c:out value="${p.targetTransaction}" /></td>
 				<td><c:out value="${p.description}"/></td>
 				<td><c:out value="${p.transactionType}"/></td>
 				<td><c:out value="${p.category}"/></td>
-				<td><c:out value="${p.periodUnit}"/></td>
-				<td><c:out value="${p.account}"/></td>
+				<td>
+				<form method="post">
+				<input type="hidden" name="transaction" value="<c:out value="${p.id}"/>"></input>
+				<button type="submit">Delete</button>
+				</form>
+				</td>
 			</tr>
 				</c:forEach>
 		</tbody>

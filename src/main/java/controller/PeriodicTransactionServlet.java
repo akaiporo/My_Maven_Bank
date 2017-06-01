@@ -24,7 +24,6 @@ public class PeriodicTransactionServlet extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		req.setCharacterEncoding("utf-8");
 		resp.setCharacterEncoding("utf-8");
 		
@@ -32,7 +31,18 @@ public class PeriodicTransactionServlet extends HttpServlet {
 		req.setAttribute("periodicTransaction", periodicTransaction);
 		req.getRequestDispatcher("/PeriodicTransaction.jsp").forward(req, resp);
 		
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("utf-8");
+		resp.setCharacterEncoding("utf-8");
+		
+		periodicTransactionManager.DeleteTransaction(Integer.valueOf(req.getParameter("transaction")));
 		
 		
 	}
+	
+	
+	
 }
