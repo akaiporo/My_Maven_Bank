@@ -17,7 +17,7 @@ import tools.Tools;
 @Table(name="Owner")
 @NamedQuery(name="Owner.findAll", query = "SELECT o FROM Owner o")
 
-public class Owner extends Person{
+public class Owner{
 	
 	@Column(name="birthdate")
 	@Temporal(TemporalType.DATE)
@@ -32,6 +32,21 @@ public class Owner extends Person{
 	@ManyToOne
 	@JoinColumn(name="id_address")
 	private Address address;
+	@Column(name="name")
+	private String name;
+	
+	@Column(name="firstname")
+	private String firstname;
+	
+	@Column(name="phonenumber")
+	private String phonenumber;
+	
+	@Column(name="mail")
+	private String mail;
+	
+	@Column(name="date_assignment")
+	@Temporal(TemporalType.DATE)
+	private Date date_assignment;
 	
 	/**
 	 * Constructor
@@ -45,8 +60,18 @@ public class Owner extends Person{
 	 * @param address : 
 	 */
 	public Owner(String name, String firstname, String phonenumber, String mail, Date birthdate, String login, String pwd, Address address) {
-		super(name, firstname, phonenumber, mail);
-		
+		if(name.isEmpty()) {
+			throw new IllegalArgumentException("The name cannot be empty");
+		}
+		if(firstname.isEmpty()) {
+			throw new IllegalArgumentException("The firstname cannot be empty");
+		}
+		if(Tools.eraseChar(phonenumber,"\\s").length()<4||Tools.eraseChar(phonenumber,"\\s").length()>11) {
+			throw new IllegalArgumentException("phonenumber must contain between 4 and 11 numbers");
+		}
+		if(!Tools.checkMail(mail)){
+			throw new IllegalArgumentException("mail must be of a valid format eg toto@titi.tutu");
+		}
 		if (birthdate == null){
 			throw new NullPointerException ("birthdate cannot be null");
 		}
@@ -115,6 +140,30 @@ public class Owner extends Person{
 		}*/
 		this.address = address;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getFirstname() {
+		return firstname;
+	}
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
+	}
+	public String getPhonenumber() {
+		return phonenumber;
+	}
+	public void setPhonenumber(String phonenumber) {
+		this.phonenumber = phonenumber;
+	}
+	public String getMail() {
+		return mail;
+	}
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
 	@Override
 	/**
 	 * Return true si tout les champs sont �gaux (mais pas les addresses m�moires)
@@ -125,9 +174,9 @@ public class Owner extends Person{
 		
 			if(((tmp.getName()==null || this.getName()==null) || tmp.getName().equals(this.getName()))
 				&& 
-				((tmp.getFirstName()==null || this.getFirstName()==null) || tmp.getFirstName().equals(this.getFirstName())) 
+				((tmp.getFirstname()==null || this.getFirstname()==null) || tmp.getFirstname().equals(this.getFirstname())) 
 				&&	 
-				((tmp.getPhoneNumber()==null||this.getPhoneNumber()==null) || tmp.getPhoneNumber().equals(this.getPhoneNumber()))
+				((tmp.getPhonenumber()==null||this.getPhonenumber()==null) || tmp.getPhonenumber().equals(this.getPhonenumber()))
 				&&
 				((tmp.getMail()==null || this.getMail()==null) || tmp.getMail().equals(this.getMail()))
 				&&
@@ -151,7 +200,7 @@ public class Owner extends Person{
 	 * Return le nom et le pr�nom
 	 */
 	public String toString() {
-		return String.format("%s %s", getName(), this.getFirstName());
+		return String.format("%s %s", getName(), this.getFirstname());
 	}
 
 }
