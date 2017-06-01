@@ -22,7 +22,7 @@
 				<label>Compte*</label>
 				<select name="slct-account">
 					<c:forEach items="${accounts}" var="p">
-				    	<option><c:out value="${p}"/></option>
+						<option value="${p.id}">${p}</option>
 					 </c:forEach>
 				</select>
 			</div>
@@ -30,7 +30,7 @@
 				<label>Destinataire</label>
 				<select name="slct-target">
 					<c:forEach items="${targets}" var="p">
-				    	<option><c:out value="${p}"/></option>
+				    	<option value="${p.id}">${p}</option>
 					 </c:forEach>
 				</select>
 			</div>
@@ -42,7 +42,7 @@
 				<label>Categorie</label>
 				<select name="slct-category">
 					<c:forEach items="${categories}" var="p">
-				    	<option><c:out value="${p}"/></option>
+				    	<option value="${p.id}">${p}</option>
 					 </c:forEach>
 				</select>
 			</div>
@@ -54,7 +54,7 @@
 				<label>Type</label>
 				<select name="slct-type">
 					<c:forEach items="${transactionTypes}" var="p">
-				    	<option><c:out value="${p}"/></option>
+				    	<option value="${p.id}">${p}</option>
 					 </c:forEach>
 				</select>
 			</div>

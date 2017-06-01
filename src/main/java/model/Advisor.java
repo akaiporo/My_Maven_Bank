@@ -4,6 +4,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
@@ -16,7 +19,23 @@ import tools.Tools;
 @Entity
 @Table(name="advisor")
 @NamedQuery(name="Advisor.findAll", query="SELECT ad FROM Advisor ad")
-public class Advisor extends Person {
+public class Advisor {
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	
+	@Column(name="name")
+	private String name;
+	
+	@Column(name="firstname")
+	private String firstname;
+	
+	@Column(name="phonenumber")
+	private String phonenumber;
+	
+	@Column(name="mail")
+	private String mail;
 	
 	@Column(name="date_assignment")
 	@Temporal(TemporalType.DATE)
@@ -37,7 +56,19 @@ public class Advisor extends Person {
 	 */
 
 	public Advisor(String name, String firstname, String phonenumber, String mail, Date date_assignment,Agency agency) {
-		super(name, firstname, phonenumber, mail);
+		
+		if(name.isEmpty()) {
+			throw new IllegalArgumentException("The name cannot be empty");
+		}
+		if(firstname.isEmpty()) {
+			throw new IllegalArgumentException("The firstname cannot be empty");
+		}
+		if(Tools.eraseChar(phonenumber,"\\s").length()<4||Tools.eraseChar(phonenumber,"\\s").length()>11) {
+			throw new IllegalArgumentException("phonenumber must contain between 4 and 11 numbers");
+		}
+		if(!Tools.checkMail(mail)){
+			throw new IllegalArgumentException("mail must be of a valid format eg toto@titi.tutu");
+		}
 		
 		if(date_assignment == null) {
 			throw new NullPointerException("Date assignment cannot be null");
@@ -48,14 +79,17 @@ public class Advisor extends Person {
 		if(agency == null) {
 			throw new NullPointerException("Agency cannot be null");
 		}
-				
-	this.date_assignment = date_assignment;
-	this.agency = agency;
+	
+		this.name = name;
+		this.firstname = firstname;
+		this.phonenumber = phonenumber;
+		this.mail = mail;
+		this.date_assignment = date_assignment;
+		this.agency = agency;
 	
 	}
 	
 	public Advisor(){
-		super();
 	}
 	
 	public Date getDateAssignment() {
@@ -83,11 +117,11 @@ public class Advisor extends Person {
 		this.agency = agency;
 	}
 	
-	@Override
+	//@Override
 	/**
 	 * Return true si tout les champs sont �gaux (mais pas les addresses m�moires)
 	 */
-	public boolean equals(Object obj){
+	/*public boolean equals(Object obj){
 		if(obj instanceof Advisor){
 			Advisor tmp = (Advisor)obj;
 		
@@ -108,14 +142,14 @@ public class Advisor extends Person {
 			else return false;
 		}
 		else return false;
-	}
+	}*/
 	
 	@Override
 	/**
 	 * Return : Une cha�ne form�e du nom et du pr�nom
 	 */
 	public String toString() {
-		return String.format("%s %s", getName(), this.getFirstName());
+		return String.format("%s %s", this.name, this.firstname);
 	}
 	
 }
