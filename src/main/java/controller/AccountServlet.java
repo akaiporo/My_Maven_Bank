@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -13,12 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import manager.AccountManager;
+import manager.AccountTypeManager;
 import manager.AgencyManager;
-import model.Account;
-import model.Address;
+import model.AccountType;
 import model.Agency;
-import model.Bank;
-import model.CountryCode;
 
 /**
  * Servlet implementation class AccountServlet
@@ -30,15 +26,17 @@ public class AccountServlet extends HttpServlet {
 	private AccountManager accountManager;
 	@EJB
 	private AgencyManager agencyManager;
+	@EJB
+	private AccountTypeManager accountTypeManager;
        
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Agency> agencies = agencyManager.findAll();
+		List<AccountType> accounttype = accountTypeManager.findAll(); 
 		request.setAttribute("agencies", agencies);
+		request.setAttribute("accounttype", accounttype);
 		getServletContext().getRequestDispatcher("/account-creation.jsp").forward(request, response);
 	}
-
-
 }

@@ -22,11 +22,14 @@
 		<label>Agence</label>
 		<select name='agency'>
 			<c:forEach var="item" items="${agencies}">
-     			<option value="${item}">"${item}"</option>
+     			<option value="${item.id}">${item}</option>
     		</c:forEach>
 		</select>
 		<label>Type de compte</label>
 		<select name='accounttype'>
+			<c:forEach var="item" items="${accounttype}">
+     			<option value="${item.id}">${item}</option>
+    		</c:forEach>
 		</select>
 		<label>Seuil d'alerte(optionnel)</label>
 		<input type='number' name='alert' <c:out value=""></c:out>>

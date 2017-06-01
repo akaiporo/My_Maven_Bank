@@ -14,10 +14,12 @@ public class AgencyManager {
 	@PersistenceContext(unitName="MyBankPersistence")
 	protected EntityManager em;
 	
+	public Agency findById(int id) {
+		return em.find(Agency.class, id);
+	}
 	
 	public List<Agency> findAll(){
 		List<Agency> items = em.createQuery("SELECT a from Agency a", Agency.class).getResultList();
-		System.out.println("SIIIIIZE : "+items.size());
 		return items;
 	}
 	
