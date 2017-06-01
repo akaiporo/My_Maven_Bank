@@ -17,11 +17,11 @@ public class AccountManager {
 	private EntityManager em;
 	
 	public void save(Account o) {
-		if(o.getClass().equals(Account.class)){
+		try{
 			em.persist(o);
 		}
-		else{
-			throw new IllegalArgumentException(String.format("Can't save %s.class as an Account.class", o.getClass()));
+		catch (Exception e) {
+			System.out.print(e.getMessage());
 		}
 	}
 
@@ -60,8 +60,7 @@ public class AccountManager {
 	}
 
 	public List<Account> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		return em.createQuery("SELECT a from Account a", Account.class).getResultList();
 	}
 	
 

@@ -11,32 +11,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import manager.AccountManager;
-import manager.AccountTypeManager;
-import manager.AgencyManager;
-import model.AccountType;
-import model.Agency;
+import model.Account;
 
 /**
- * Servlet implementation class AccountServlet
+ * Servlet implementation class ChoiceAccountServlet
  */
-@WebServlet("/newAccount")
-public class AccountServlet extends HttpServlet {
+@WebServlet("/choiceAccountServlet")
+public class ChoiceAccountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	@EJB
+	private AccountManager accountManager;
 
-	@EJB
-	private AgencyManager agencyManager;
-	@EJB
-	private AccountTypeManager accountTypeManager;
-       
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Agency> agencies = agencyManager.findAll();
-		List<AccountType> accounttype = accountTypeManager.findAll(); 
-		request.setAttribute("agencies", agencies);
-		request.setAttribute("accounttype", accounttype);
+		List<Account> accounts = accountManager.findAll();
+		request.setAttribute("accounts", accounts);
 		request.setAttribute("contextPath", getServletContext().getContextPath());
-		getServletContext().getRequestDispatcher("/createAccount.jsp").forward(request, response);
+		getServletContext().getRequestDispatcher("/choiceAccount.jsp").forward(request, response);
 	}
+	
+
+
 }

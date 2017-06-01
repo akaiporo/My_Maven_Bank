@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.List;
 
 import javax.ejb.EJB;
 import javax.servlet.ServletException;
@@ -11,48 +10,62 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import manager.AgencyManager;
+import manager.AccountManager;
 import manager.AccountTypeManager;
+import manager.AgencyManager;
+import manager.CountryCodeManager;
 import model.Account;
 import model.AccountType;
 import model.Agency;
 import model.CountryCode;
 
 /**
- * Servlet implementation class CreateAccountServlet
+ * Servlet implementation class AccountDisptacher
  */
-@WebServlet("/account-creation.jsp")
-public class CreateAccountServlet extends HttpServlet {
+@WebServlet("/accountDispatcher")
+public class AccountDispatcher extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+       
+	@EJB
+	private AccountManager accountManager;
 	@EJB
 	private AgencyManager agencyManager;
 	@EJB
 	private AccountTypeManager accountTypeManager;
-       
+	@EJB
+	private CountryCodeManager countryCodeManager;
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+	}
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
 		Agency agency = agencyManager.findById(Integer.valueOf(request.getParameter("agency")));
 		AccountType accounttype = accountTypeManager.findById(Integer.valueOf(request.getParameter("accounttype")));
-		CountryCode cc = new CountryCode("FR");
+		CountryCode cc = countryCodeManager.findById(1);
 		String accountNumber = request.getParameter("accountnumber");
-		Date creationDate = new Date(request.getParameter("creationdate"));
+		Date creationDate = new Date();//new Date(request.getParameter("creationdate"));
 		double solde = Double.valueOf(request.getParameter("balance"));
 		double interest = Double.valueOf(request.getParameter("interestrate"));
 		int alert = Integer.valueOf(request.getParameter("alert"));
 		int overdraft = Integer.valueOf(request.getParameter("overdraft"));
 		
 		Account newAccount = new Account(accountNumber, creationDate, solde, overdraft, interest, agency, cc, accounttype, alert);
-		
-		request.setAttribute("account", newAccount);
-		getServletContext().getRequestDispatcher("/account.jsp").forward(request, response);
-		
-		
-	}
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response){
+		try{
+			accountManager.save(newAccount);
+			request.setAttribute("account", newAccount);
+			getServletContext().getRequestDispatcher("/WEB-INF/account.jsp").forward(request, response);
+			
+		}catch(Exception e){
+			
+		}
 		
 	}
 

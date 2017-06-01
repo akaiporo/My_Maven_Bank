@@ -8,7 +8,7 @@
 <title>Création de compte</title>
 </head>
 <body>
-	<form action="/account-creation.jsp" method="POST">
+	<form action="${contextPath}/accountDispatcher" method="POST">
 		<label>Numéro de compte</label>
 		<input type='text' name='accountnumber' <c:out value=""></c:out>>
 		<label>Date de création</label>
@@ -18,17 +18,17 @@
 		<label>Découvert autorisé</label>
 		<input type='number' name='overdraft' <c:out value=""></c:out>>
 		<label>Taux d'intérêt</label>
-		<input type='number' name='interestrate' <c:out value=""></c:out>>
+		<input type='number' step="0.1" name='interestrate' <c:out value=""></c:out>>
 		<label>Agence</label>
 		<select name='agency'>
-			<c:forEach var="item" items="${agencies}">
-     			<option value="${item.id}">${item}</option>
+			<c:forEach var="agency" items="${agencies}">
+     			<option value="${agency.id}">${agency}</option>
     		</c:forEach>
 		</select>
 		<label>Type de compte</label>
 		<select name='accounttype'>
-			<c:forEach var="item" items="${accounttype}">
-     			<option value="${item.id}">${item}</option>
+			<c:forEach var="type" items="${accounttype}">
+     			<option value="${type.id}">${type}</option>
     		</c:forEach>
 		</select>
 		<label>Seuil d'alerte(optionnel)</label>
