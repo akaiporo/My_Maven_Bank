@@ -19,7 +19,7 @@
 				<input name="amount" type="number">
 			</div>
 			<div>
-				<input type='hidden' value="${account}" name="account">
+				<input type='hidden' value="${param['account']}" name="account">
 				<label>Compte*</label>
 				<select name="slct-account">
 					<c:forEach items="${accounts}" var="p">
