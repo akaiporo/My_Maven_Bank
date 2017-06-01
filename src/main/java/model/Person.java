@@ -86,7 +86,6 @@ public abstract class Person {
 		this.mail=mail;
 	}
 	
-	
 	@Override
 	/**
 	 * Return true si tout les champs sont �gaux (mais pas les addresses m�moires)
