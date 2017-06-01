@@ -59,5 +59,12 @@ public class CreateTransactionManager {
 	public TransactionType findTypById(int id){
 		return em.find(TransactionType.class, id);
 	}
+	
+	public Double getAmount(String rdsign, String value){
+		if (rdsign.equals("moins")){
+			return -Math.abs(Double.valueOf(value)); 		
+		}
+		else return Math.abs(Double.valueOf(value));
+	}
 
 }
