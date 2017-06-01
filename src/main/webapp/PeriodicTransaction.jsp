@@ -9,7 +9,7 @@
 <title>Java EE</title>
 </head>
 <body>
-	<h3>Les opérations du compte...</h3>
+	<h3>Les opérations pour ${currentAccount}</h3>
 	<table>
 		<tbody>
 			<tr>
@@ -34,7 +34,7 @@
 				<td><c:out value="${p.transactionType}"/></td>
 				<td><c:out value="${p.category}"/></td>
 				<td>
-				<form method="post" action="${contextPath}/transactionList">
+				<form method="post" action="<c:url value="/transactionList"/>">
 				<input type="hidden" name="transaction" value="<c:out value="${p.id}"/>"></input>
 				<button type="submit">Delete</button>
 				</form>

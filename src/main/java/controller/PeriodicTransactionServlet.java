@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import manager.AccountManager;
 import manager.PeriodicTransactionManager;
+import model.Account;
 import model.PeriodicTransaction;
 
 @WebServlet("/transactionList")
@@ -21,6 +23,8 @@ public class PeriodicTransactionServlet extends HttpServlet {
      @EJB
      private PeriodicTransactionManager periodicTransactionManager;
     
+     @EJB
+     private AccountManager accountManager;
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,9 +32,10 @@ public class PeriodicTransactionServlet extends HttpServlet {
 		resp.setCharacterEncoding("utf-8");
 		
 		int id = Integer.valueOf(req.getParameter("account"));
-		System.out.println(id);
+		Account currentAccount=accountManager.findById(id);
 		List <PeriodicTransaction> periodicTransactions = this.periodicTransactionManager.findAllByAccountId(id);
 		req.setAttribute("periodicTransaction", periodicTransactions);
+		req.setAttribute("currentAccount", currentAccount);
 		req.getRequestDispatcher("/PeriodicTransaction.jsp").forward(req, resp);
 		
 	}
@@ -43,9 +48,6 @@ public class PeriodicTransactionServlet extends HttpServlet {
 		System.out.println(req.getAttribute("contextPath"));
 		periodicTransactionManager.DeleteTransaction(Integer.valueOf(req.getParameter("transaction")));
 		
-		
 	}
-	
-	
 	
 }
