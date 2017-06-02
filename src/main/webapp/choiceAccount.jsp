@@ -9,6 +9,7 @@
 </head>
 <body>
 	<select onChange="window.location.href=this.value">
+		<option selected>Choisissez un compte...</option>
 		<c:forEach var="account" items="${accounts}">
      		<option value="${contextPath}/choiceAccount?account=${account.id}">${account}</option>
     	</c:forEach>

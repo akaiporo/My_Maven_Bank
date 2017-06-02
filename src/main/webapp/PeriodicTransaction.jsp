@@ -11,6 +11,8 @@
 <title>Java EE</title>
 </head>
 <body>
+	<div id='choiceAccount'>
+	</div>
 	<h3>Les opérations pour ${currentAccount}</h3>
 	<table>
 		<tbody>
@@ -53,6 +55,10 @@
 			var id = document.getElementById('redirectAccount').value;
 			$('#content').load('newTransaction?account='+id);
 		}
+		function includeCreateTransactionJsp(){
+			$('#choiceAccount').load('choiceAccountServlet');
+		}
+		window.onload = includeCreateTransactionJsp;
 	</script>
 </body>
 </html>
