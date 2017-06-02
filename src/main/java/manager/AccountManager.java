@@ -9,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import model.Account;
+import model.PeriodicTransaction;
 
 @Stateless
 public class AccountManager {
@@ -40,8 +41,7 @@ public class AccountManager {
 	public Account findById(int id) {
 		return em.find(Account.class, id);
 	}
-
-
+	
 	public List<Account> findByName(String name) throws IllegalClassFormatException {
 		Query q =  em.createQuery("SELECT a from Account a where a.account_number = :name");
 		q.setParameter("name",name);

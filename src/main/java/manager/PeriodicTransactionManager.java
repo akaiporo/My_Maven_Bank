@@ -24,6 +24,11 @@ public class PeriodicTransactionManager {
 	@PersistenceContext(unitName="MyBankPersistence")
 	private EntityManager em;
 	
+	public PeriodicTransaction findById(int id) {
+		return em.find(PeriodicTransaction.class, id);
+	}
+
+	
 	public List<PeriodicTransaction> findAll() {
 		Query q = em.createQuery("SELECT p FROM PeriodicTransaction p");
 		return q.getResultList();

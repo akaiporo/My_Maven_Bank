@@ -43,6 +43,12 @@
 				<input type="hidden" name="accountId" value="<c:out value="${currentAccount.id}"/>"></input>
 				<button type="submit">Delete</button>
 				</form>
+				<script type="text/javascript">
+					function includeEditTransactionJsp(){
+					var id = document.getElementById('editTransaction').value;
+					$('#content').load('editTransaction?transaction='+id);
+				}
+				</script>
 				</td>
 			</tr>
 				</c:forEach>
