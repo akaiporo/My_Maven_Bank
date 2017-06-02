@@ -61,7 +61,6 @@ public class CreateTransactionServlet extends HttpServlet {
 			
 			periodicTransactionManager.saveTransaction(wording, transactionValue, dateOperation, null,
 					0, description, transactionType, targetTransaction, category, null,currentAccount);
-			System.out.println("success");
 		} 
 		catch (ParseException e) {			
 		}

@@ -1,5 +1,6 @@
 package manager;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -75,6 +76,18 @@ public class PeriodicTransactionManager {
 			return -Math.abs(Double.valueOf(value)); 		
 		}
 		else return Math.abs(Double.valueOf(value));
+	}
+	
+	public List<TransactionType> rdClickRestrainTransactionTypes(String rdsign){
+		if (rdsign.equals("moins")){
+			return findAllTypes();
+			}
+		else {
+			List<TransactionType> rdplus=new ArrayList<TransactionType>();
+			rdplus.add(findTypById(2));
+			rdplus.add(findTypById(4));
+			return rdplus;
+		}
 	}
 
 	
