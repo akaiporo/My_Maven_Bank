@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import manager.AccountManager;
-import manager.CreateTransactionManager;
+import manager.PeriodicTransactionManager;
 import model.Account;
 import model.Category;
 import model.TargetTransaction;
@@ -28,7 +28,7 @@ public class CreateTransactionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@EJB 
-	private CreateTransactionManager createTransactionManager;
+	private PeriodicTransactionManager periodicTransactionManager;
 	
 	@EJB
     private AccountManager accountManager;
@@ -37,9 +37,9 @@ public class CreateTransactionServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
 		req.setAttribute("currentAccount",accountManager.findById(Integer.valueOf(req.getParameter("account"))));
-		req.setAttribute("targets",createTransactionManager.findAllTargets());
-		req.setAttribute("categories",createTransactionManager.findAllCategories());
-		req.setAttribute("transactionTypes",createTransactionManager.findAllTypes());
+		req.setAttribute("targets",periodicTransactionManager.findAllTargets());
+		req.setAttribute("categories",periodicTransactionManager.findAllCategories());
+		req.setAttribute("transactionTypes",periodicTransactionManager.findAllTypes());
 		getServletContext().getRequestDispatcher("/createTransaction.jsp").forward(req, resp);
 	}
 	
@@ -51,15 +51,15 @@ public class CreateTransactionServlet extends HttpServlet {
 		
 		String wording = req.getParameter("wording");
 		String description=req.getParameter("description");
-		Double transactionValue=createTransactionManager.getAmount(req.getParameter("rd-sign"), req.getParameter("amount")); //a remplacer avec la valeur rentrée
-		Category category = createTransactionManager.findCatById(Integer.valueOf(req.getParameter("slct-category")));
-		TransactionType transactionType = createTransactionManager.findTypById(Integer.valueOf(req.getParameter("slct-type")));
-		TargetTransaction targetTransaction = createTransactionManager.findTarById(Integer.valueOf(req.getParameter("slct-target")));
+		Double transactionValue=periodicTransactionManager.getAmount(req.getParameter("rd-sign"), req.getParameter("amount")); //a remplacer avec la valeur rentrée
+		Category category = periodicTransactionManager.findCatById(Integer.valueOf(req.getParameter("slct-category")));
+		TransactionType transactionType = periodicTransactionManager.findTypById(Integer.valueOf(req.getParameter("slct-type")));
+		TargetTransaction targetTransaction = periodicTransactionManager.findTarById(Integer.valueOf(req.getParameter("slct-target")));
 		try {
 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 			Date dateOperation = sdf.parse(req.getParameter("date"));
 			
-			createTransactionManager.saveTransaction(wording, transactionValue, dateOperation, null,
+			periodicTransactionManager.saveTransaction(wording, transactionValue, dateOperation, null,
 					0, description, transactionType, targetTransaction, category, null,currentAccount);
 			System.out.println("success");
 		} 
