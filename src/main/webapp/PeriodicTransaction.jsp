@@ -43,12 +43,7 @@
 				<input type="hidden" name="accountId" value="<c:out value="${currentAccount.id}"/>"></input>
 				<button type="submit">Delete</button>
 				</form>
-				<script type="text/javascript">
-					function includeEditTransactionJsp(){
-					var id = document.getElementById('editTransaction').value;
-					$('#content').load('editTransaction?transaction='+id);
-				}
-				</script>
+				<button id='editTransaction' onClick='includeEditTransactionJsp()' value='${p.id}'>Créer une transaction</button>	
 				</td>
 			</tr>
 				</c:forEach>
@@ -63,6 +58,10 @@
 		}
 		function includeChoiceAccountJsp(){
 			$('#choiceAccount').load('choiceAccountServlet');
+		}
+		function includeEditTransactionJsp(){
+			var id = document.getElementById('editTransaction').value;
+			$('#content').load('editTransaction?transaction='+id);
 		}
 		window.onload = includeChoiceAccountJsp;
 	</script>
