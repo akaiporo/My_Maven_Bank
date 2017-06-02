@@ -16,6 +16,7 @@ import manager.AccountManager;
 import manager.PeriodicTransactionManager;
 import model.Account;
 import model.Category;
+import model.PeriodicTransaction;
 import model.TargetTransaction;
 import model.TransactionType;
 
