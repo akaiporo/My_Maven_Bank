@@ -23,7 +23,7 @@ public class AuthentificationManager {
 		String hashed = "";
 		
 		try {
-			Query q =em.createQuery("select o from Owner o where o.login = :inputlogin", String.class);
+			Query q =em.createQuery("select o from Owner o where o.login = :inputlogin", Owner.class);
 			q.setParameter("inputlogin", login);
 			Owner lg = (Owner)q.getSingleResult();
 			System.out.println(lg);

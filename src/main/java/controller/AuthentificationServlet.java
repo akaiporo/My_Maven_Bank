@@ -34,6 +34,17 @@ public class AuthentificationServlet extends HttpServlet {
 			
 			Owner owner = new Owner();
 			try {
+				/**
+				 * List<Owner> owners = authentificationManager.findAll();
+				 * for(Owner o : Owners){
+				 * 		if(inputlogin.equals(o.getLogin)){
+				 * 			owner.authentificationManager.findById(o.id);
+				 * 		}
+				 * 		else{
+				 * 			resp.sendRedirect(errorjsp);
+				 * 		}
+				 * }
+				 */
 				owner = this.authentificationManager.findOwnerByLogin(inputlogin, inputpwd);
 			} catch (AccountDoesNotExistException e) {
 				// TODO Auto-generated catch block
