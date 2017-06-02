@@ -9,7 +9,7 @@
 	</head>
 	<body>
 		<h3>Nouvelle transaction pour ${currentAccount}</h3>
-		<form method="POST" action="">
+		<form method="POST" action="<c:url value="/newTransaction"/>">
 			<input type='hidden' value="${param['account']}" name="account">
 			<div>
 				<label>Débit</label>

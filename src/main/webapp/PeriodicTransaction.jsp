@@ -6,6 +6,8 @@
 <html>
 <head>
 <meta charset="utf-8">
+<link rel="stylesheet" type="text/css" href="./css/stylesheet.css">
+<script type="text/javascript" src="./js/lib/jquery-3.2.1.min.js"></script>
 <title>Java EE</title>
 </head>
 <body>
@@ -43,6 +45,13 @@
 				</c:forEach>
 		</tbody>
 	</table>
-	<button onClick='window.location.href="<c:url value="/newTransaction?account=${currentAccount.id}"/>"'>Créer une transaction</button>	
+	<button id='redirectAccount' onClick='includeCreateTransactionJsp()' value='${currentAccount.id}'>Créer une transaction</button>	
+	<div id="content"></div>
+	<script type="text/javascript">
+		function includeCreateTransactionJsp(){
+			var id = document.getElementById('redirectAccount').value;
+			$('#content').load('newTransaction?account='+id);
+		}
+	</script>
 </body>
 </html>
