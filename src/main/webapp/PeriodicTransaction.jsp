@@ -55,10 +55,10 @@
 			var id = document.getElementById('redirectAccount').value;
 			$('#content').load('newTransaction?account='+id);
 		}
-		function includeCreateTransactionJsp(){
+		function includeChoiceAccountJsp(){
 			$('#choiceAccount').load('choiceAccountServlet');
 		}
-		window.onload = includeCreateTransactionJsp;
+		window.onload = includeChoiceAccountJsp;
 	</script>
 </body>
 </html>
