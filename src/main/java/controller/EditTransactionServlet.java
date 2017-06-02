@@ -37,7 +37,9 @@ public class EditTransactionServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
-		req.setAttribute("currentTransaction",periodicTransactionManager.findById(Integer.valueOf(req.getParameter("transaction"))));
+		PeriodicTransaction currentTransaction=periodicTransactionManager.findById(Integer.valueOf(req.getParameter("transaction")));
+		req.setAttribute("currentTransaction",currentTransaction);
+		req.setAttribute("amount", Math.abs(currentTransaction.getTransactionValue()));
 		req.setAttribute("targets",periodicTransactionManager.findAllTargets());
 		req.setAttribute("categories",periodicTransactionManager.findAllCategories());
 		req.setAttribute("transactionTypes",periodicTransactionManager.findAllTypes());
@@ -48,8 +50,8 @@ public class EditTransactionServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException{
-		Account currentAccount=accountManager.findById(Integer.valueOf(req.getParameter("account")));
-		
+		int idTransaction=Integer.valueOf(req.getParameter("currentTransaction"));
+		int idAccount=periodicTransactionManager.findById(Integer.valueOf(req.getParameter("currentTransaction"))).getAccount().getId();
 		String wording = req.getParameter("wording");
 		String description=req.getParameter("description");
 		Double transactionValue=periodicTransactionManager.getAmount(req.getParameter("rd-sign"), req.getParameter("amount")); //a remplacer avec la valeur rentrée
@@ -60,11 +62,12 @@ public class EditTransactionServlet extends HttpServlet {
 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 			Date dateOperation = sdf.parse(req.getParameter("date"));
 			
-			periodicTransactionManager.saveTransaction(wording, transactionValue, dateOperation, null,
-					0, description, transactionType, targetTransaction, category, null,currentAccount);
+			periodicTransactionManager.editTransaction(wording, transactionValue, dateOperation, null,
+					0, description, transactionType, targetTransaction, category, null,idTransaction);
 		} 
 		catch (ParseException e) {			
 		}
-		resp.sendRedirect(req.getContextPath()+"/transactionList?account="+currentAccount.getId());
+		resp.sendRedirect(req.getContextPath()+"/transactionList?account="+idAccount);
 	}
 }
+

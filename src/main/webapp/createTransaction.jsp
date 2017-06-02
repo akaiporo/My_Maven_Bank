@@ -72,7 +72,7 @@
 				<label>Crédit</label>
 				<input type="radio" name="rd-sign" value="plus">
 				<label>Montant*</label>
-				<input name="amount" type="number" step="0.01">
+				<input name="amount" type="number" value="${amount}" step="0.01">
 			</div>
 			<div>
 				<label>Destinataire</label>
@@ -84,9 +84,9 @@
 			</div>
 			<div>
 				<label>Libellé*</label>
-				<input type="text" name="wording">
+				<input type="text" value="${currentTransaction.wording}" name="wording">
 				<label>Description</label>
-				<input type="text" name="description">
+				<input type="text" value="${currentTransaction.description}" name="description">
 				<label>Categorie</label>
 				<select name="slct-category">
 					<c:forEach items="${categories}" var="p">
@@ -96,7 +96,7 @@
 			</div>
 			<div>
 			<label>Date</label>
-			<input type="date" name="date">
+			<input type="date" value="${currentTransaction.dateOperation}" name="date">
 			</div>
 			<div>
 				<label>Type</label>

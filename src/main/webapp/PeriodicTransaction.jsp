@@ -43,7 +43,7 @@
 				<input type="hidden" name="accountId" value="<c:out value="${currentAccount.id}"/>"></input>
 				<button type="submit">Delete</button>
 				</form>
-				<button id='editTransaction' onClick='includeEditTransactionJsp()' value='${p.id}'>Créer une transaction</button>	
+				<button id='editTransaction' onClick='includeEditTransactionJsp()' value='${p.id}'>Edit</button>	
 				</td>
 			</tr>
 				</c:forEach>

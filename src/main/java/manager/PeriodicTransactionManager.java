@@ -66,6 +66,22 @@ public class PeriodicTransactionManager {
 		em.persist(saved);
 	}
 	
+	public void editTransaction(String wording, Double transaction_value, Date date_operation, Date end_date_transaction,
+			  int day_number, String description, TransactionType transactionType, TargetTransaction targetTransaction, Category category,
+			  PeriodUnit periodUnit, int idTransaction){
+		PeriodicTransaction edited = em.find(PeriodicTransaction.class, idTransaction);
+		edited.setWording(wording);
+		edited.setTransactionValue(transaction_value);
+		edited.setDateOperation(date_operation);
+		edited.setEndDateTransaction(end_date_transaction);
+		edited.setDayNumber(day_number);
+		edited.setDescription(description);
+		edited.setTransactionType(transactionType);
+		edited.setTargetTransaction(targetTransaction);
+		edited.setCategory(category);
+		em.persist(edited);
+	}
+	
 	public Category findCatById(int id){
 		return em.find(Category.class, id);
 	}
@@ -94,6 +110,7 @@ public class PeriodicTransactionManager {
 			return rdplus;
 		}
 	}
+	
 
 	
 }
