@@ -38,6 +38,7 @@
 				<td>
 				<form method="post" action="<c:url value="/transactionList"/>">
 				<input type="hidden" name="transaction" value="<c:out value="${p.id}"/>"></input>
+				<input type="hidden" name="accountId" value="<c:out value="${currentAccount.id}"/>"></input>
 				<button type="submit">Delete</button>
 				</form>
 				</td>

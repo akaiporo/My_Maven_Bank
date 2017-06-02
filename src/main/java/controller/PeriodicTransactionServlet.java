@@ -46,8 +46,8 @@ public class PeriodicTransactionServlet extends HttpServlet {
 		req.setCharacterEncoding("utf-8");
 		resp.setCharacterEncoding("utf-8");
 		req.setAttribute("contextPath", getServletContext().getContextPath());
-		System.out.println(req.getAttribute("contextPath"));
 		periodicTransactionManager.DeleteTransaction(Integer.valueOf(req.getParameter("transaction")));
+		resp.sendRedirect(getServletContext().getContextPath()+"/transactionList?account="+req.getParameter("accountId"));
 
 	}
 	
