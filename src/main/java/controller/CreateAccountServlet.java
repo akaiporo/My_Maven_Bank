@@ -25,7 +25,7 @@ import model.CountryCode;
  * Servlet implementation class AccountDisptacher
  */
 @WebServlet("/accountDispatcher")
-public class AccountDispatcher extends HttpServlet {
+public class CreateAccountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 	@EJB

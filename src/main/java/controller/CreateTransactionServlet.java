@@ -18,6 +18,7 @@ import model.Account;
 import model.Category;
 import model.PeriodicTransaction;
 import model.TargetTransaction;
+import model.ThePasswordDoesNotMatchException;
 import model.TransactionType;
 
 @WebServlet("/newTransaction")
@@ -67,12 +68,13 @@ public class CreateTransactionServlet extends HttpServlet {
 			resp.sendRedirect(req.getContextPath()+"/transactionList?account="+currentAccount.getId());
 		} 
 		catch (IllegalArgumentException err){
-			getServletContext().getRequestDispatcher("/createTransaction.jsp").forward(req, resp);
+			System.out.println(err.getMessage());
+			resp.sendRedirect(req.getContextPath()+"/transactionList?account="+currentAccount.getId());
 		}
 		catch (ParseException e) {			
 		}		
 		catch (NullPointerException err){
-		}
+		} 
 		
 	}
 }

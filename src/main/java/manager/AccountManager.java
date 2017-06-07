@@ -63,5 +63,28 @@ public class AccountManager {
 		return em.createQuery("SELECT a from Account a", Account.class).getResultList();
 	}
 	
+	/**
+	 *
+	 * @param a nouveau compte
+	 * @param id du compte à moidifier
+	 */
+	public void edit(Account a, int id){
+		Account account = em.find(Account.class, id);
+		
+		account.setAccountNumber(a.getAccountNumber());
+		account.setAccountType(a.getAccountType());
+		account.setAgency(a.getAgency());
+		account.setAlertThresh(a.getAlertThresh());
+		account.setCountryCode(a.getCountryCode());
+		account.setCreationDate(a.getCreationDate());
+		account.setFirstTotal(a.getFirstTotal());
+		account.setInterestRate(a.getInterestRate());
+		account.setOverdraft(a.getOverdraft());
+		account.setTransactions(a.getTransactions());
+		
+		em.persist(account);
+		
+	}
+	
 
 }
