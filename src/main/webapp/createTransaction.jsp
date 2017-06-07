@@ -64,10 +64,20 @@
 			<input type='hidden' value="${currentTransaction.account.id}" name="account">
 			<input type='hidden' value="${currentTransaction.id}" name="id">
 			<div>
-				<label>Débit</label>
-				<input type="radio" name="rd-sign" value="moins" checked="checked">
-				<label>Crédit</label>
-				<input type="radio" name="rd-sign" value="plus">
+				<c:choose>
+					<c:when test="${rdsign eq 'moins'}">
+						<label>Débit</label>
+						<input type="radio" name="rd-sign" value="moins" checked="checked">
+						<label>Crédit</label>
+						<input type="radio" name="rd-sign" value="plus">
+					</c:when>
+					<c:otherwise>
+						<label>Débit</label>
+						<input type="radio" name="rd-sign" value="moins">
+						<label>Crédit</label>
+						<input type="radio" name="rd-sign" value="plus" checked="checked">
+					</c:otherwise>
+				</c:choose>
 				<label>Montant*</label>
 				<input name="amount" type="number" value="${amount}" step="0.01">
 			</div>

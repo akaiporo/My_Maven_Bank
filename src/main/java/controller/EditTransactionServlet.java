@@ -41,7 +41,9 @@ public class EditTransactionServlet extends HttpServlet {
 		req.setAttribute("currentTransaction",currentTransaction);
 		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 		String date = sdf.format(currentTransaction.getDateOperation());
+		String rdsign=periodicTransactionManager.getSign(currentTransaction.getTransactionValue());
 		req.setAttribute("date",date);
+		req.setAttribute("rdsign",rdsign);
 		req.setAttribute("amount", Math.abs(currentTransaction.getTransactionValue()));
 		req.setAttribute("targets",periodicTransactionManager.findAllTargets());
 		req.setAttribute("categories",periodicTransactionManager.findAllCategories());

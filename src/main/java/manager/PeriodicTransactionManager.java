@@ -99,6 +99,13 @@ public class PeriodicTransactionManager {
 		else return Math.abs(Double.valueOf(value));
 	}
 	
+	public String getSign(double amount){
+		if (amount<0){
+			return "moins";
+		}
+		return "plus";
+	}
+	
 	public List<TransactionType> rdClickRestrainTransactionTypes(String rdsign){
 		if (rdsign.equals("moins")){
 			return findAllTypes();
