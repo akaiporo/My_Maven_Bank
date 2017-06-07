@@ -24,7 +24,7 @@ import model.CountryCode;
 /**
  * Servlet implementation class EditAccountServlet
  */
-@WebServlet("/EditAccountServlet")
+@WebServlet("/EditAccount")
 public class EditAccountServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	@EJB
@@ -68,8 +68,8 @@ public class EditAccountServlet extends HttpServlet {
 				Account newAccount = new Account(accountNumber, creationDate, solde, overdraft, interest, agency, cc, accounttype, alert);
 				try{
 					accountManager.edit(newAccount, id);
-					request.setAttribute("account", newAccount);
-					getServletContext().getRequestDispatcher("/choiceAccountServlet").forward(request, response);
+					request.setAttribute("account", id);
+					getServletContext().getRequestDispatcher("/transactionList").forward(request, response);
 					
 				}catch(Exception e){
 					

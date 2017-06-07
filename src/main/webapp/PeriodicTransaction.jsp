@@ -12,7 +12,12 @@
 </head>
 <body>
 	<div id='choiceAccount'>
+	
 	</div>
+	<form action="<c:url value="/newAccount"/>" method='GET'>
+		<input type='hidden' name='accountId' value='${currentAccount.id}'>
+    	<input type="submit" value='Editer le compte'>
+	</form>
 	<h3>Les opérations pour ${currentAccount}</h3>
 	<table>
 		<tbody>
