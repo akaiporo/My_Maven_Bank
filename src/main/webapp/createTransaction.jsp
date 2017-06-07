@@ -9,7 +9,9 @@
 		<title>New transaction</title>
 	</head>
 	<body>
-		
+		<c:choose>
+			<c:when test="${empty currentTransaction}">				
+			
 		<form method="POST" action="<c:url value="/newTransaction"/>">
 		<h3>Nouvelle transaction pour ${currentAccount}</h3>
 			<input type='hidden' value="${param['account']}" name="account">
@@ -23,16 +25,9 @@
 			</div>
 			<div>
 				<label>Destinataire</label>
-				<select name="slct-target">
+					<select name="slct-target">
 					<c:forEach items="${targets}" var="p">
-						<c:choose>
-							<c:when test="${p.id eq currentTransaction.targetTransaction.id}">
-								<option value="${p.id}" selected="selected">${p}</option>
-							</c:when>
-							<c:otherwise>
-								<option value="${p.id}">${p}</option>
-							</c:otherwise>
-						</c:choose>
+				    	<option value="${p.id}">${p}</option>
 					 </c:forEach>
 				</select>
 			</div>
@@ -62,7 +57,8 @@
 			</div>
 			<button type="submit">Ajout</button>
 		</form>
-		
+		</c:when>
+		<c:otherwise>
 		<form method="POST" action="<c:url value="/editTransaction"/>">
 		<h3>Editer une transaction</h3>
 			<input type='hidden' value="${currentTransaction.account.id}" name="account">
@@ -78,7 +74,14 @@
 				<label>Destinataire</label>
 				<select name="slct-target">
 					<c:forEach items="${targets}" var="p">
-				    	<option value="${p.id}">${p}</option>
+						<c:choose>
+							<c:when test="${p.id eq currentTransaction.targetTransaction.id}">
+								<option value="${p.id}" selected="selected">${p}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="${p.id}">${p}</option>
+							</c:otherwise>
+						</c:choose>
 					 </c:forEach>
 				</select>
 			</div>
@@ -108,5 +111,7 @@
 			</div>
 			<button type="submit">Sauver</button>
 		</form>
+			</c:otherwise>
+		</c:choose>
 	</body>
 </html>
