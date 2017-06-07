@@ -99,7 +99,7 @@
 			</div>
 			<div>
 			<label>Date</label>
-			<input type="date" value="${currentTransaction.dateOperation}" name="date">
+			<input type="date" value="${date}" name="date">
 			</div>
 			<div>
 				<label>Type</label>

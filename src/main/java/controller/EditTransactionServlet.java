@@ -39,6 +39,9 @@ public class EditTransactionServlet extends HttpServlet {
 			throws ServletException, IOException {
 		PeriodicTransaction currentTransaction=periodicTransactionManager.findById(Integer.valueOf(req.getParameter("transaction")));
 		req.setAttribute("currentTransaction",currentTransaction);
+		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+		String date = sdf.format(currentTransaction.getDateOperation());
+		req.setAttribute("date",date);
 		req.setAttribute("amount", Math.abs(currentTransaction.getTransactionValue()));
 		req.setAttribute("targets",periodicTransactionManager.findAllTargets());
 		req.setAttribute("categories",periodicTransactionManager.findAllCategories());
