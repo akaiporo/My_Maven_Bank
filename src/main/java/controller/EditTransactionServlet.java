@@ -53,8 +53,9 @@ public class EditTransactionServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException{
-		int idTransaction=Integer.valueOf(req.getParameter("currentTransaction"));
-		int idAccount=periodicTransactionManager.findById(Integer.valueOf(req.getParameter("currentTransaction"))).getAccount().getId();
+		int idTransaction=Integer.valueOf(req.getParameter("id"));
+		int idAccount=Integer.valueOf(req.getParameter("account"));
+		
 		String wording = req.getParameter("wording");
 		String description=req.getParameter("description");
 		Double transactionValue=periodicTransactionManager.getAmount(req.getParameter("rd-sign"), req.getParameter("amount")); //a remplacer avec la valeur rentrée

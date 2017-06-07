@@ -62,6 +62,7 @@
 		<form method="POST" action="<c:url value="/editTransaction"/>">
 		<h3>Editer une transaction</h3>
 			<input type='hidden' value="${currentTransaction.account.id}" name="account">
+			<input type='hidden' value="${currentTransaction.id}" name="id">
 			<div>
 				<label>Débit</label>
 				<input type="radio" name="rd-sign" value="moins" checked="checked">
