@@ -27,6 +27,8 @@ public class AccountServlet extends HttpServlet {
 	private AgencyManager agencyManager;
 	@EJB
 	private AccountTypeManager accountTypeManager;
+	@EJB
+	private AccountManager accountManager;;
        
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -34,6 +36,9 @@ public class AccountServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Agency> agencies = agencyManager.findAll();
 		List<AccountType> accounttype = accountTypeManager.findAll(); 
+		if(request.getParameter("accountId")!= null){
+			request.setAttribute("currentAccount", accountManager.findById(Integer.valueOf(request.getParameter("accountId"))));
+		}
 		request.setAttribute("agencies", agencies);
 		request.setAttribute("accounttype", accounttype);
 		request.setAttribute("contextPath", getServletContext().getContextPath());
