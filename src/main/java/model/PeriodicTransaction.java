@@ -124,9 +124,9 @@ public class PeriodicTransaction{
 		return this.id;
 	}
 	public void setId(int val){
-		/*if(val <= 0){
+		if(val <= 0){
 			throw new IllegalArgumentException();
-		}*/
+		}
 		this.id = val;
 	}
 	
@@ -142,9 +142,9 @@ public class PeriodicTransaction{
 		return this.transaction_value;
 	}
 	public void setTransactionValue(Double val){
-		/*if(val == null){
+		if(val == null){
 			throw new NullPointerException("La valeur de la ligne ne peut �tre vide ou null");
-		}*/
+		}
 		this.transaction_value = val;
 	}
 	
@@ -152,9 +152,9 @@ public class PeriodicTransaction{
 		return this.date_operation;
 	}
 	public void setDateOperation(Date date){
-		/*if(date == null){
+		if(date == null){
 			throw new NullPointerException("La date ne peut �tre null");
-		}*/
+		}
 		this.date_operation = date;
 	}
 	
@@ -177,8 +177,9 @@ public class PeriodicTransaction{
 		}
 		if(day < 0){
 			throw new IllegalArgumentException("La cycle ne peut �tre n�gatif");
-		}*/
+		}
 		this.day_number = day;
+		*/
 	}
 	
 	public String getDescription(){
@@ -192,9 +193,9 @@ public class PeriodicTransaction{
 		return this.transactionType;
 	}
 	public void setTransactionType(TransactionType tt){
-		/*if(tt == null){
+		if(tt == null){
 			throw new NullPointerException("Le type ne peut �tre null");
-		}*/
+		}
 		this.transactionType = tt;
 	}
 	
@@ -202,9 +203,9 @@ public class PeriodicTransaction{
 		return this.targetTransaction;
 	}
 	public void setTargetTransaction(TargetTransaction target){
-		/*if(target == null){
+		if(target == null){
 			throw new NullPointerException("La cible ne peut �tre null");
-		}*/
+		}
 		this.targetTransaction = target;
 	}
 	
@@ -212,9 +213,9 @@ public class PeriodicTransaction{
 		return this.category;
 	}
 	public void setCategory(Category cat){
-		/*if(cat == null){
+		if(cat == null){
 			throw new NullPointerException("La cat�gorie ne peut �tre null");
-		}*/
+		}
 		this.category = cat;
 	}
 	public PeriodUnit getPeriodUnit(){
@@ -223,8 +224,9 @@ public class PeriodicTransaction{
 	public void setPeriodUnit(PeriodUnit pu){
 		/*if(this.day_number == 0){
 			throw new IllegalAccessError("Le num�ro de jour cyclique n'a pas �t� d�clar�. Utilisez la m�thod setPeriodParam()");
-		}*/
+		}
 		this.periodUnit = pu;
+		*/
 	}
 	
 	/**
@@ -233,13 +235,13 @@ public class PeriodicTransaction{
 	 * @param daynumber : Jour actif(3e jour de chaque mois, 6e jour de la semaine...)
 	 */
 	public void setPeriodParam(PeriodUnit pu, int daynumber){
-		/*if(pu != null && daynumber > 0){
+		if(pu != null && daynumber > 0){
 			this.periodUnit = pu;
 			this.day_number = daynumber;
 		}
-		else{*/
+		else{
 			throw new IllegalArgumentException("Le type de cycle et le jour actif doivent �tre tout les deux renseign�");
-		//}
+		}
 	}
 	public Account getAccount(){
 		return this.account;
