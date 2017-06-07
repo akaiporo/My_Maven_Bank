@@ -75,7 +75,7 @@ public class PeriodicTransactionManager {
 		edited.setTransactionType(transactionType);
 		edited.setTargetTransaction(targetTransaction);
 		edited.setCategory(category);
-		em.persist(edited);
+		//em.persist(edited);
 	}
 	
 	public Category findCatById(int id){
