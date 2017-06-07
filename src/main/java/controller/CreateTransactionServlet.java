@@ -16,6 +16,7 @@ import manager.AccountManager;
 import manager.PeriodicTransactionManager;
 import model.Account;
 import model.Category;
+import model.PeriodicTransaction;
 import model.TargetTransaction;
 import model.TransactionType;
 
@@ -49,21 +50,29 @@ public class CreateTransactionServlet extends HttpServlet {
 			throws ServletException, IOException{
 		Account currentAccount=accountManager.findById(Integer.valueOf(req.getParameter("account")));
 		
-		String wording = req.getParameter("wording");
-		String description=req.getParameter("description");
-		Double transactionValue=periodicTransactionManager.getAmount(req.getParameter("rd-sign"), req.getParameter("amount")); //a remplacer avec la valeur rentrée
-		Category category = periodicTransactionManager.findCatById(Integer.valueOf(req.getParameter("slct-category")));
-		TransactionType transactionType = periodicTransactionManager.findTypById(Integer.valueOf(req.getParameter("slct-type")));
-		TargetTransaction targetTransaction = periodicTransactionManager.findTarById(Integer.valueOf(req.getParameter("slct-target")));
 		try {
+			String wording = req.getParameter("wording");
+			String description=req.getParameter("description");
+			Double transactionValue=periodicTransactionManager.getAmount(req.getParameter("rd-sign"), req.getParameter("amount")); //a remplacer avec la valeur rentrée
+			Category category = periodicTransactionManager.findCatById(Integer.valueOf(req.getParameter("slct-category")));
+			TransactionType transactionType = periodicTransactionManager.findTypById(Integer.valueOf(req.getParameter("slct-type")));
+			TargetTransaction targetTransaction = periodicTransactionManager.findTarById(Integer.valueOf(req.getParameter("slct-target")));
 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 			Date dateOperation = sdf.parse(req.getParameter("date"));
 			
-			periodicTransactionManager.saveTransaction(wording, transactionValue, dateOperation, null,
-					0, description, transactionType, targetTransaction, category, null,currentAccount);
+			PeriodicTransaction newTransaction=  new PeriodicTransaction(wording, transactionValue, dateOperation, null,
+					0, description, transactionType, targetTransaction, category, null);
+			newTransaction.setAccount(currentAccount);
+			periodicTransactionManager.saveTransaction(newTransaction);
+			resp.sendRedirect(req.getContextPath()+"/transactionList?account="+currentAccount.getId());
 		} 
-		catch (ParseException e) {			
+		catch (IllegalArgumentException err){
+			getServletContext().getRequestDispatcher("/createTransaction.jsp").forward(req, resp);
 		}
-		resp.sendRedirect(req.getContextPath()+"/transactionList?account="+currentAccount.getId());
+		catch (ParseException e) {			
+		}		
+		catch (NullPointerException err){
+		}
+		
 	}
 }

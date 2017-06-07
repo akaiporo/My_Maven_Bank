@@ -57,12 +57,7 @@ public class PeriodicTransactionManager {
 		return em.createNamedQuery("TargetTransaction.findAll", TargetTransaction.class).getResultList();
 	}
 
-	public void saveTransaction(String wording, Double transaction_value, Date date_operation, Date end_date_transaction,
-			  int day_number, String description, TransactionType transactionType, TargetTransaction targetTransaction, Category category,
-			  PeriodUnit periodUnit, Account account){
-		PeriodicTransaction saved=new PeriodicTransaction(wording, transaction_value,date_operation,end_date_transaction, 
-				day_number,description, transactionType,targetTransaction,category, periodUnit);
-		saved.setAccount(account);
+	public void saveTransaction(PeriodicTransaction saved){
 		em.persist(saved);
 	}
 	
@@ -92,8 +87,11 @@ public class PeriodicTransactionManager {
 		return em.find(TransactionType.class, id);
 	}
 	
-	public Double getAmount(String rdsign, String value){
-		if (rdsign.equals("moins")){
+	public Double getAmount(String rdsign, String value) throws IllegalArgumentException {
+		if (value.isEmpty()){
+			throw new IllegalArgumentException ("Le montant de transaction doit être un nombre positif");
+		}
+		else if (rdsign.equals("moins")){
 			return -Math.abs(Double.valueOf(value)); 		
 		}
 		else return Math.abs(Double.valueOf(value));
