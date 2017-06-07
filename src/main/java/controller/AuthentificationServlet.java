@@ -38,7 +38,7 @@ public class AuthentificationServlet extends HttpServlet {
 				 * List<Owner> owners = authentificationManager.findAll();
 				 * for(Owner o : Owners){
 				 * 		if(inputlogin.equals(o.getLogin)){
-				 * 			owner.authentificationManager.findById(o.id);
+				 * 			owner = o;
 				 * 		}
 				 * 		else{
 				 * 			resp.sendRedirect(errorjsp);
