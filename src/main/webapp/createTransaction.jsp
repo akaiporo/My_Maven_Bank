@@ -93,8 +93,15 @@
 				<label>Categorie</label>
 				<select name="slct-category">
 					<c:forEach items="${categories}" var="p">
-				    	<option value="${p.id}">${p}</option>
-					 </c:forEach>
+						<c:choose>
+							<c:when test="${p.id eq currentTransaction.category.id}">
+								<option value="${p.id}" selected="selected">${p}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="${p.id}">${p}</option>
+							</c:otherwise>
+						</c:choose>
+					</c:forEach>
 				</select>
 			</div>
 			<div>
@@ -105,7 +112,14 @@
 				<label>Type</label>
 				<select name="slct-type">
 					<c:forEach items="${transactionTypes}" var="p">
-				    	<option value="${p.id}">${p}</option>
+				    	<c:choose>
+							<c:when test="${p.id eq currentTransaction.transactionType.id}">
+								<option value="${p.id}" selected="selected">${p}</option>
+							</c:when>
+							<c:otherwise>
+								<option value="${p.id}">${p}</option>
+							</c:otherwise>
+						</c:choose>
 					 </c:forEach>
 				</select>
 			</div>
