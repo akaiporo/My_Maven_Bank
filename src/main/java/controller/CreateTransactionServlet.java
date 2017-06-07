@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 import manager.AccountManager;
 import manager.PeriodicTransactionManager;
 import model.Account;
+import model.BadArgumentException;
 import model.Category;
 import model.PeriodicTransaction;
 import model.TargetTransaction;
-import model.ThePasswordDoesNotMatchException;
 import model.TransactionType;
 
 @WebServlet("/newTransaction")
@@ -67,9 +67,7 @@ public class CreateTransactionServlet extends HttpServlet {
 			periodicTransactionManager.saveTransaction(newTransaction);
 			resp.sendRedirect(req.getContextPath()+"/transactionList?account="+currentAccount.getId());
 		} 
-		catch (IllegalArgumentException err){
-			System.out.println(err.getMessage());
-			resp.sendRedirect(req.getContextPath()+"/transactionList?account="+currentAccount.getId());
+		catch (BadArgumentException err){
 		}
 		catch (ParseException e) {			
 		}		

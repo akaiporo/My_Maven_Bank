@@ -10,6 +10,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import model.Account;
+import model.BadArgumentException;
 import model.Category;
 import model.PeriodUnit;
 import model.PeriodicTransaction;
@@ -87,9 +88,9 @@ public class PeriodicTransactionManager {
 		return em.find(TransactionType.class, id);
 	}
 	
-	public Double getAmount(String rdsign, String value) throws IllegalArgumentException {
+	public Double getAmount(String rdsign, String value) throws BadArgumentException {
 		if (value.isEmpty()){
-			throw new IllegalArgumentException ("Le montant de transaction doit être un nombre positif");
+			throw new BadArgumentException ("Le montant de transaction doit être un nombre positif");
 		}
 		else if (rdsign.equals("moins")){
 			return -Math.abs(Double.valueOf(value)); 		

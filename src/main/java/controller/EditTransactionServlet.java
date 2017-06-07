@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import manager.AccountManager;
 import manager.PeriodicTransactionManager;
 import model.Account;
+import model.BadArgumentException;
 import model.Category;
 import model.PeriodicTransaction;
 import model.TargetTransaction;
@@ -60,11 +61,11 @@ public class EditTransactionServlet extends HttpServlet {
 		
 		String wording = req.getParameter("wording");
 		String description=req.getParameter("description");
-		Double transactionValue=periodicTransactionManager.getAmount(req.getParameter("rd-sign"), req.getParameter("amount")); //a remplacer avec la valeur rentrée
 		Category category = periodicTransactionManager.findCatById(Integer.valueOf(req.getParameter("slct-category")));
 		TransactionType transactionType = periodicTransactionManager.findTypById(Integer.valueOf(req.getParameter("slct-type")));
 		TargetTransaction targetTransaction = periodicTransactionManager.findTarById(Integer.valueOf(req.getParameter("slct-target")));
 		try {
+			Double transactionValue=periodicTransactionManager.getAmount(req.getParameter("rd-sign"), req.getParameter("amount")); //a remplacer avec la valeur rentrée
 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 			Date dateOperation = sdf.parse(req.getParameter("date"));
 			
@@ -73,6 +74,7 @@ public class EditTransactionServlet extends HttpServlet {
 		} 
 		catch (ParseException e) {			
 		}
+		catch (BadArgumentException e){}
 		resp.sendRedirect(req.getContextPath()+"/transactionList?account="+idAccount);
 	}
 }
