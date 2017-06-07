@@ -39,11 +39,12 @@
 				<td><c:out value="${p.category}"/></td>
 				<td>
 				<form method="post" action="<c:url value="/transactionList"/>">
-				<input type="hidden" name="transaction" value="<c:out value="${p.id}"/>"></input>
+				<input id='transactionId' type="hidden" name="transaction" value="<c:out value="${p.id}"/>"></input>
 				<input type="hidden" name="accountId" value="<c:out value="${currentAccount.id}"/>"></input>
 				<button type="submit">Delete</button>
 				</form>
-				<button id='editTransaction' onClick='includeEditTransactionJsp()' value='${p.id}'>Edit</button>
+				<button id='editTransaction' onClick="$('#content').load('editTransaction?transaction='+this.value);" 
+				        value='${p.id}'>Edit</button>
 				</td>
 			</tr>
 				</c:forEach>
@@ -58,10 +59,6 @@
 		}
 		function includeChoiceAccountJsp(){
 			$('#choiceAccount').load('choiceAccountServlet');
-		}
-		function includeEditTransactionJsp(){
-			var id = document.getElementById('editTransaction').value;
-			$('#content').load('editTransaction?transaction='+id);
 		}
 		window.onload = includeChoiceAccountJsp;
 	</script>
