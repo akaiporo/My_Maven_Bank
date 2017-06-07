@@ -10,7 +10,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import org.mindrot.jbcrypt.BCrypt;
+
 import tools.Tools;
 
 @Entity
@@ -102,12 +102,12 @@ public class Owner{
 	}
 
 	public void setBirthdate(Date date){
-		/*if (date == null){
+		if (date == null){
 			throw new NullPointerException ("birthdate cannot be null");
 		}
 		if (date.getTime()>Tools.today().getTime()){
 			throw new IllegalArgumentException ("birthdate in the future");
-		}*/
+		}
 		this.birthdate = date;
 	}
 	
@@ -115,9 +115,9 @@ public class Owner{
 		return this.login;
 	}
 	public void setLogin(String login){
-		/*if (login.isEmpty()){
+		if (login.isEmpty()){
 			throw new IllegalArgumentException ("login cannot be empty");
-		}*/
+		}
 		this.login = login;
 	}
 	
@@ -125,9 +125,9 @@ public class Owner{
 		return this.pwd;
 	}
 	public void setPwd(String pwd){
-		/*if (pwd == null){
+		if (pwd == null){
 			pwd = "";
-		}*/
+		}
 		this.pwd = pwd;
 	}
 	
@@ -135,33 +135,45 @@ public class Owner{
 		return this.address;
 	}
 	public void setAddress(Address address){
-		/*if (address == null){
+		if (address == null){
 			throw new NullPointerException ("address cannot be null");
-		}*/
+		}
 		this.address = address;
 	}
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
+		if(name.isEmpty()) {
+			throw new IllegalArgumentException("The name cannot be empty");
+		}
 		this.name = name;
 	}
 	public String getFirstname() {
 		return firstname;
 	}
 	public void setFirstname(String firstname) {
+		if(firstname.isEmpty()) {
+			throw new IllegalArgumentException("The firstname cannot be empty");
+		}
 		this.firstname = firstname;
 	}
 	public String getPhonenumber() {
 		return phonenumber;
 	}
 	public void setPhonenumber(String phonenumber) {
+		if(Tools.eraseChar(phonenumber,"\\s").length()<4||Tools.eraseChar(phonenumber,"\\s").length()>11) {
+			throw new IllegalArgumentException("phonenumber must contain between 4 and 11 numbers");
+		}
 		this.phonenumber = phonenumber;
 	}
 	public String getMail() {
 		return mail;
 	}
 	public void setMail(String mail) {
+		if(!Tools.checkMail(mail)){
+			throw new IllegalArgumentException("mail must be of a valid format eg toto@titi.tutu");
+		}
 		this.mail = mail;
 	}
 	@Override
