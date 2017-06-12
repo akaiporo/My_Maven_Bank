@@ -38,9 +38,9 @@ public class PeriodUnit {
 		return this.id;
 	}
 	public void setId(int val){
-		/*if(val <= 0){
+		if(val <= 0){
 			throw new IllegalArgumentException();
-		}*/
+		}
 		this.id = val;
 	}
 	

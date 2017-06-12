@@ -60,6 +60,9 @@ public class TargetTransaction {
 		return this.target_name;
 	}
 	public void setTargetName(String name){
+		if (name.isEmpty()){
+			throw new IllegalArgumentException("wording cannot be empty");
+		}
 		this.target_name = name;
 	}
 	
@@ -67,6 +70,12 @@ public class TargetTransaction {
 		return this.IBAN;
 	}
 	public void setIBAN(String iban){
+		if (iban.length() != 27){
+			throw new IllegalArgumentException("IBAN is composed of 27 car in France");
+		}
+		if (!iban.toUpperCase().startsWith("FR")){
+			throw new IllegalArgumentException("IBAN begins with 'FR' in France");
+		}
 		this.IBAN = iban;
 	}
 	@Override

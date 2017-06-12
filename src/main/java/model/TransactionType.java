@@ -53,6 +53,9 @@ public class TransactionType implements Serializable{
 		return this.wording;
 	}
 	public void setWording(String wording){
+		if(wording.isEmpty()){
+			throw new IllegalArgumentException("Transaction type can't be null or empty");
+		}
 		this.wording = wording;
 	}
 	public void setId(int val){
