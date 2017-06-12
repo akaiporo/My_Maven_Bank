@@ -14,7 +14,7 @@ import model.Owner;
 import model.AccountDoesNotExistException;
 
 
-@WebServlet("/Authentification")
+@WebServlet("/authentification")
 public class AuthentificationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -24,7 +24,7 @@ public class AuthentificationServlet extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
-		getServletContext().getRequestDispatcher("/Authentification.jsp").forward(req,resp);
+		getServletContext().getRequestDispatcher("/authentification.jsp").forward(req,resp);
 	}
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
