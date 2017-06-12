@@ -44,15 +44,15 @@
 	<form action="<c:url value="/EditAccount"/>" method="POST">
 		<input type='hidden' name='id' value="${currentAccount.id}">
 		<label>Numéro de compte</label>
-		<input type='text' name='accountnumber' <c:out value="${currentAccount.accountNumber}"></c:out>>
+		<input type='text' name='accountnumber' value="${currentAccount.accountNumber}">
 		<label>Date de création</label>
-		<input type='date' name='creationdate' <c:out value="${currentAccount.creationDate}"></c:out>>
+		<input type='date' name='creationdate' value="${creationDate}">
 		<label>Solde initial</label>
-		<input type='number' name='balance' <c:out value="${currentAccount.firstTotal}"></c:out>>
+		<input type='number' name='balance' value="${currentAccount.firstTotal}">
 		<label>Découvert autorisé</label>
-		<input type='number' name='overdraft' <c:out value="${currentAccount.overdraft}"></c:out>>
+		<input type='number' name='overdraft' value="${currentAccount.overdraft}">
 		<label>Taux d'intérêt</label>
-		<input type='number' step="0.1" name='interestrate' <c:out value="${currentAccount.interestRate}"></c:out>>
+		<input type='number' step="0.1" name='interestrate' value="${currentAccount.interestRate}">
 		<label>Agence</label>
 		<select name='agency'>
 			<c:forEach var="agency" items="${agencies}">
@@ -80,7 +80,7 @@
     		</c:forEach>
 		</select>
 		<label>Seuil d'alerte(optionnel)</label>
-		<input type='number' name='alert' <c:out value="${currentAccount.alertThresh}"></c:out>>
+		<input type='number' name='alert' value="${currentAccount.alertThresh}">
 		<button type='submit'>Submit</button>
 	</form>
 	</c:otherwise>

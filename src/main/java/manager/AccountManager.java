@@ -41,17 +41,11 @@ public class AccountManager {
 	public Account findById(int id) {
 		return em.find(Account.class, id);
 	}
-	
-	public List<Account> findByName(String name) throws IllegalClassFormatException {
-		Query q =  em.createQuery("SELECT a from Account a where a.account_number = :name");
-		q.setParameter("name",name);
-		if(q.getResultList().contains(Account.class)){
-			return q.getResultList();
-		}
-		else{
-			throw new IllegalClassFormatException("EntityManager query tried to return a list of non-Account object");
-		}
-		
+
+	public Account findByAccountNumber(String number){
+		Query q =  em.createQuery("SELECT a from Account a where a.account_number = :number", Account.class);
+		q.setParameter("number",number);
+		return (Account) q.getSingleResult();
 	}
 	
 	private Account copy(Account a){
