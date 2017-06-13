@@ -12,7 +12,6 @@ import javax.ejb.EJB;
 import org.junit.Before;
 import org.junit.Test;
 
-import model.Account;
 import model.AccountType;
 import model.ItemDoesNotExistException;
 

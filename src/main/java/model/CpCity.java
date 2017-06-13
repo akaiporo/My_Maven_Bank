@@ -18,7 +18,7 @@ import javax.persistence.Table;
 public class CpCity {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	@Column(name="postalcode")
 	private String postalCode;
 	@Column(name="city")
@@ -39,14 +39,14 @@ public class CpCity {
 		
 	} 
 	
-	public void setId(int id){
+	public void setId(Integer id){
 		/*if(id <= 0){
 			throw new IllegalArgumentException("Id can't be null or negativ");
 		}*/
 		this.id = id;
 	}
 	
-	public int getId(){
+	public Integer getId(){
 		return this.id;
 	}
 	

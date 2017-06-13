@@ -38,7 +38,7 @@ public class TestCpCity {
 	@Test
 	public void testGetId() {
 		this.cpcity.setId(1);
-		assertEquals(1, this.cpcity.getId());
+		assertEquals(1, this.cpcity.getId().intValue());
 	}
 	@Test
 	public void testSetId_Valid() {

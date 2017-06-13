@@ -18,7 +18,7 @@ public class Bank implements Serializable {
 	/*VARIABLES*/
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	@Column(name="bank_name")
 	private String bank_name;
 	@Column(name="bank_code")
@@ -46,10 +46,10 @@ public class Bank implements Serializable {
 		
 	}
 	
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
-	public void setId(int val){
+	public void setId(Integer val){
 		/*if(val <=0){
 			throw new IllegalArgumentException("Id must be strictly superior to 0");
 		}*/

@@ -35,7 +35,7 @@ public class TestAddress {
 	@Test
 	public void testGetId() {
 		setAddress();
-		assertEquals(1, tested.getId());
+		assertEquals(1, tested.getId().intValue());
 	}
 	@Test(expected=IllegalArgumentException.class)
 	public void testSetId_isInvalid() {

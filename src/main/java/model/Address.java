@@ -40,10 +40,10 @@ public class Address {
 		
 	}
 	
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
-	public void setId(int val){
+	public void setId(Integer val){
 		/*if(val <= 0){
 			throw new IllegalArgumentException();
 		}*/
@@ -98,7 +98,7 @@ public class Address {
 	}
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	@Column(name="line1")
 	private String line1;
 	@Column(name="line2")
