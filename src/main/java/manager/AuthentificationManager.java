@@ -20,23 +20,24 @@ public class AuthentificationManager {
 	
 	public Owner findOwnerByLogin(String login, String pwd) throws AccountDoesNotExistException {
 		
-		String hashed = "";
+		String password= "";
 		
 		try {
-			Query q =em.createQuery("select o from Owner o where o.login = :inputlogin", Owner.class);
+			Query q =em.createQuery("select o from owner o where o.login =:inputlogin", Owner.class);
 			q.setParameter("inputlogin", login);
 			Owner lg = (Owner)q.getSingleResult();
 			System.out.println(lg);
 			
 			if(lg != null) {
-				hashed = lg.getPwd();
 				
-					if(BCrypt.checkpw(pwd, hashed)) {
+				password = lg.getPwd();
+				
+					/*if(BCrypt.checkpw(pwd, hashed)) {
 						System.out.print(String.format("Welcome to your personnal bank, %s!", lg.getFirstname()));
 					}
 					else {
 						System.out.print("Credentials dot not match. Please try again.");
-					}
+					}*/
 			}
 			else {
 				System.out.print(" The login is incorrect ! Please try again! "); 

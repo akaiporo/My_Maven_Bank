@@ -5,30 +5,30 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Authentification</title>
-<link href="./css/bootstrap.min.css" rel="stylesheet">
-<link href="./css/bootstrap-theme.min.css" rel="stylesheet">
-<style>
-html {
-  font-family: sans-serif;
-  -webkit-text-size-adjust: 100%;
-      -ms-text-size-adjust: 100%;
-}
-body {
-	margin:65px;
-   text-align: center;
-}
-section {
-margin-top: 40px;
-}
-div#container{
-   margin-left: auto;
-   margin-right: auto;
-   width: 50em;
-}
-</style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Authentification</title>
+	<link href="./css/bootstrap.min.css" rel="stylesheet">
+	<link href="./css/bootstrap-theme.min.css" rel="stylesheet">
+	<style>
+		html {
+		  font-family: sans-serif;
+		  -webkit-text-size-adjust: 100%;
+		      -ms-text-size-adjust: 100%;
+		}
+		body {
+			margin:65px;
+		   text-align: center;
+		}
+		section {
+		margin-top: 40px;
+		}
+		div#container{
+		   margin-left: auto;
+		   margin-right: auto;
+		   width: 50em;
+		}
+	</style>
 </head>
 <body>
 	<header>
@@ -38,17 +38,17 @@ div#container{
 	<section>
 		<div class="container">
 			<div class="row">
-			<form class="form-horizontal" action="<c:url value="/Authentification"/>" method="POST">
+			<form class="form-horizontal" action="j_security_check" method="POST">
 				<div class="form-group">
 					<label for="inputLogin" class="col-sm-3 control-label">Login</label>
 					<div class="col-sm-6">
-					<input type="text" class="form-control" placeholder="login" name="Login">
+					<input type="text" class="form-control" placeholder="login" name="j_username">
 					</div>
 				</div>
 				<div class="form-group">
 					<label for="inputPassword" class="col-sm-3 control-label">Password</label>
 					<div class="col-sm-6">
-					<input type="password" class="form-control" name="pwd" placeholder="Password">
+					<input type="password" class="form-control" name="j_password" placeholder="Password">
 					</div>
 				</div>
 				<div class="btn" role="group">

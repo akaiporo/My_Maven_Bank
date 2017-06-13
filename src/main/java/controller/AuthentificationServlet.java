@@ -23,28 +23,18 @@ public class AuthentificationServlet extends HttpServlet {
 	
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+		System.out.println("test");
 		getServletContext().getRequestDispatcher("/authentification.jsp").forward(req,resp);
 	}
 	
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("test");
+
 		String inputpwd = req.getParameter("pwd");
 		String inputlogin = req.getParameter("login");
 			
+		System.out.println("test");
 			Owner owner = new Owner();
 			try {
-				/**
-				 * List<Owner> owners = authentificationManager.findAll();
-				 * for(Owner o : Owners){
-				 * 		if(inputlogin.equals(o.getLogin)){
-				 * 			owner = o;
-				 * 		}
-				 * 		else{
-				 * 			resp.sendRedirect(errorjsp);
-				 * 		}
-				 * }
-				 */
 				owner = this.authentificationManager.findOwnerByLogin(inputlogin, inputpwd);
 			} catch (AccountDoesNotExistException e) {
 				// TODO Auto-generated catch block
