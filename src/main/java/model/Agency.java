@@ -18,7 +18,7 @@ public class Agency {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	@Column(name="agency_name")
 	private String agency_name;
 	@Column(name="counter_code")
@@ -63,11 +63,11 @@ public class Agency {
 		
 	}
 	
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	} 
 	
-	public void setId(int val){
+	public void setId(Integer val){
 		/*if(val <= 0){
 			throw new IllegalArgumentException();
 		}*/

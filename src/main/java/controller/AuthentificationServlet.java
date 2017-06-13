@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import manager.AuthentificationManager;
 import model.Owner;
-import model.AccountDoesNotExistException;
+import model.ItemDoesNotExistException;
 
 
 @WebServlet("/authentification")
@@ -46,7 +46,7 @@ public class AuthentificationServlet extends HttpServlet {
 				 * }
 				 */
 				owner = this.authentificationManager.findOwnerByLogin(inputlogin, inputpwd);
-			} catch (AccountDoesNotExistException e) {
+			} catch (ItemDoesNotExistException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

@@ -19,7 +19,7 @@ public class CountryCode  implements Serializable {
 	
 
 	/* VARIABLES */
-	private int id;
+	private Integer id;
 	private String countryCode;
 	
 	/* CONSTRUCTORS */
@@ -37,7 +37,7 @@ public class CountryCode  implements Serializable {
 	/* GETTERS & SETTERS */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getId(){
+	public Integer getId(){
 		return this.id;
 	}
 	@Column(name="country_code")
@@ -51,7 +51,7 @@ public class CountryCode  implements Serializable {
 		}*/
 		this.countryCode = code;
 	}
-	public void setId(int val){
+	public void setId(Integer val){
 		/*if(val <= 0){
 			throw new IllegalArgumentException();
 		}*/

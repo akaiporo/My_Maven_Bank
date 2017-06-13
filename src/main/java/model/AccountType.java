@@ -14,7 +14,10 @@ import javax.persistence.Table;
 public class AccountType {
 
 	/* VARIABLES */
-	private int id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
+	@Column(name="account_type")
 	private String accountType;
 	
 	/* CONSTRUCTOR */
@@ -28,13 +31,12 @@ public class AccountType {
 	}
 	
 	/* GETTERS & SETTERS */
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	public int getId(){
+	
+	public Integer getId(){
 		return this.id;
 	}
 	
-	@Column(name="account_type")
+	
 	public String getAccountType(){
 		return this.accountType;
 	}
@@ -44,7 +46,7 @@ public class AccountType {
 		}*/
 		this.accountType = acc;
 	}
-	public void setId(int val){
+	public void setId(Integer val){
 		/*if(val <= 0){
 			throw new IllegalArgumentException();
 		}*/

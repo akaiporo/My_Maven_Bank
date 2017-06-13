@@ -48,7 +48,7 @@ public class TestAgency {
 	public void testGetId() {
 		initAgency();
 		tested.setId(2);
-		assertEquals(2, tested.getId());
+		assertEquals(2, tested.getId().intValue());
 	}
 	@Test
 	public void testSetId() {

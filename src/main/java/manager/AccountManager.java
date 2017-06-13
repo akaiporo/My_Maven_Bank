@@ -1,6 +1,5 @@
 package manager;
 
-import java.lang.instrument.IllegalClassFormatException;
 import java.util.List;
 
 import javax.ejb.Stateless;
@@ -9,7 +8,8 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import model.Account;
-import model.PeriodicTransaction;
+import model.AccountAlreadyExistingException;
+import model.ItemDoesNotExistException;
 
 @Stateless
 public class AccountManager {
@@ -17,13 +17,15 @@ public class AccountManager {
 	@PersistenceContext(unitName="MyBankPersistence")
 	private EntityManager em;
 	
-	public void save(Account o) {
-		try{
-			em.persist(o);
+	public void save(Account o) throws AccountAlreadyExistingException {
+		try {
+			if(this.findByAccountNumber(o.getAccountNumber()) != null){
+				throw new AccountAlreadyExistingException();
+			}
+		} catch (ItemDoesNotExistException e) {
+		
 		}
-		catch (Exception e) {
-			System.out.print(e.getMessage());
-		}
+		em.persist(o);
 	}
 
 	/**
@@ -42,10 +44,15 @@ public class AccountManager {
 		return em.find(Account.class, id);
 	}
 
-	public Account findByAccountNumber(String number){
+	public Account findByAccountNumber(String number) throws ItemDoesNotExistException{
 		Query q =  em.createQuery("SELECT a from Account a where a.account_number = :number", Account.class);
 		q.setParameter("number",number);
-		return (Account) q.getSingleResult();
+		try{
+			return (Account) q.getSingleResult();
+		}
+		catch(Exception e){
+			throw new ItemDoesNotExistException();
+		}
 	}
 	
 	private Account copy(Account a){
@@ -78,6 +85,11 @@ public class AccountManager {
 		
 		em.persist(account);
 		
+	}
+
+	public EntityManager getEntityManager() {
+		// TODO Auto-generated method stub
+		return this.em;
 	}
 	
 

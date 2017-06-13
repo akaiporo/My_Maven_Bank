@@ -25,7 +25,7 @@ public class TestCountryCode {
 	@Test
 	public void testGetId() {
 		tested.setId(1);
-		assertEquals(1,tested.getId());
+		assertEquals(1,tested.getId().intValue());
 	}
 	@Test(expected = IllegalArgumentException.class)
 	public void testSetId_Invalid() {

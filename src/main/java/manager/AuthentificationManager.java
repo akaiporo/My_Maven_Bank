@@ -8,7 +8,7 @@ import javax.persistence.Query;
 
 import org.mindrot.jbcrypt.BCrypt;
 
-import model.AccountDoesNotExistException;
+import model.ItemDoesNotExistException;
 import model.Owner;
 
 @Stateless
@@ -18,7 +18,7 @@ public class AuthentificationManager {
 	private EntityManager em;
 	
 	
-	public Owner findOwnerByLogin(String login, String pwd) throws AccountDoesNotExistException {
+	public Owner findOwnerByLogin(String login, String pwd) throws ItemDoesNotExistException {
 		
 		String hashed = "";
 		
@@ -44,7 +44,7 @@ public class AuthentificationManager {
 			return lg;
 		}
 		catch (NoResultException e) {
-			throw new AccountDoesNotExistException();
+			throw new ItemDoesNotExistException();
 		}
 
 	}
