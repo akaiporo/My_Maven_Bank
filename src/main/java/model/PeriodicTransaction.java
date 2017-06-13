@@ -137,7 +137,7 @@ public class PeriodicTransaction{
 		this.wording = wording;
 	}
 	
-	public double getTransactionValue(){
+	public Double getTransactionValue(){
 		
 		return this.transaction_value;
 	}
