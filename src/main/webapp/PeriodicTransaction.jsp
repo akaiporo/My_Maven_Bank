@@ -16,12 +16,12 @@
 	<div id='choiceAccount'>
 	
 	</div>
-	<form action="<c:url value="/newAccount"/>" method='GET'>
-		<h3>Les opérations pour ${currentAccount}</h3>
+	<form style="marin-top: 50px;" action="<c:url value="/newAccount"/>" method='GET'>
+		<h3 style="display:inline;">Les opérations pour ${currentAccount}</h3>
 		<input type='hidden' name='accountId' value='${currentAccount.id}'>
     	<input type="submit" class="btn btn-primary" value='Editer le compte'>
 	</form>
-	<table class="table">
+	<table style="marin-top: 50px;" class="table">
 		<tbody>
 			<tr>
 				<th>Libelé</th>
@@ -49,16 +49,15 @@
 				<input id='transactionId' type="hidden" name="transaction" value="<c:out value="${p.id}"/>"></input>
 				<input type="hidden" name="accountId" value="<c:out value="${currentAccount.id}"/>"></input>
 				<button class="btn btn-default" type="submit">Supprimer</button>
+				</form>
 				<button class="btn btn-primary" id='editTransaction' onClick="$('#content').load('editTransaction?transaction='+this.value);" 
 				        value='${p.id}'>Editer</button>
-				
-				</form>
 				</td>
 			</tr> 
 				</c:forEach>
 		</tbody>
 	</table>
-	<button class="btn btn-primary" id='redirectAccount' onClick='includeCreateTransactionJsp()' value='${currentAccount.id}'>Créer une transaction</button>	
+	<button class="btn btn-primary pull-right" id='redirectAccount' onClick='includeCreateTransactionJsp()' value='${currentAccount.id}'>Créer une transaction</button>	
 	<div id="content"></div>
 	<script type="text/javascript">
 		function includeCreateTransactionJsp(){
