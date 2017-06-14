@@ -7,12 +7,16 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>New transaction</title>
+		<link rel="stylesheet" type="text/css" href="./css/stylesheet.css">
+		<link href="./css/bootstrap.min.css" rel="stylesheet">
+		<link href="./css/bootstrap-theme.min.css" rel="stylesheet">
 	</head>
 	<body>
+	<div style="width: 50%; margin-left: 50%">
 		<c:choose>
 			<c:when test="${empty currentTransaction}">				
-			
-		<form method="POST" action="<c:url value="/newTransaction"/>">
+		
+		<form class="form-group" method="POST" action="<c:url value="/newTransaction"/>">
 		<h3>Nouvelle transaction pour ${currentAccount}</h3>
 			<input type='hidden' value="${param['account']}" name="account">
 			<div>
@@ -21,7 +25,7 @@
 				<label>Crédit</label>
 				<input type="radio" name="rd-sign" value="plus">
 				<label>Montant*</label>
-				<input name="amount" type="number" step="0.01">
+				<input class="form-control" name="amount" type="number" step="0.01">
 			</div>
 			<div>
 				<label>Destinataire</label>
@@ -33,11 +37,11 @@
 			</div>
 			<div>
 				<label>Libellé*</label>
-				<input type="text" name="wording">
+				<input class="form-control" type="text" name="wording">
 				<label>Description</label>
-				<input type="text" name="description">
+				<input class="form-control" type="text" name="description">
 				<label>Categorie</label>
-				<select name="slct-category">
+				<select class="form-control" name="slct-category">
 					<c:forEach items="${categories}" var="p">
 				    	<option value="${p.id}">${p}</option>
 					 </c:forEach>
@@ -55,7 +59,7 @@
 					 </c:forEach>
 				</select>
 			</div>
-			<button type="submit">Ajout</button>
+			<button class="btn btn-primary" type="submit">Ajout</button>
 		</form>
 		</c:when>
 		<c:otherwise>
@@ -138,5 +142,6 @@
 		</form>
 			</c:otherwise>
 		</c:choose>
+		</div>
 	</body>
 </html>

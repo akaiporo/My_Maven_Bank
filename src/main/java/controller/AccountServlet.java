@@ -46,9 +46,10 @@ public class AccountServlet extends HttpServlet {
 			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
 			String date = sdf.format(currentAccount.getCreationDate());
 			request.setAttribute("creationDate", date);
-			request.setAttribute("agencies", agencies);
-			request.setAttribute("accounttype", accounttype);
+			
 		}
+		request.setAttribute("agencies", agencies);
+		request.setAttribute("accounttype", accounttype);
 		request.setAttribute("contextPath", getServletContext().getContextPath());
 		getServletContext().getRequestDispatcher("/createAccount.jsp").forward(request, response);
 	}
