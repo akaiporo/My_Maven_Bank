@@ -7,6 +7,8 @@
 <head>
 <meta charset="utf-8">
 <link rel="stylesheet" type="text/css" href="./css/stylesheet.css">
+<link href="./css/bootstrap.min.css" rel="stylesheet">
+<link href="./css/bootstrap-theme.min.css" rel="stylesheet">
 <script type="text/javascript" src="./js/lib/jquery-3.2.1.min.js"></script>
 <title>Java EE</title>
 </head>
@@ -15,20 +17,20 @@
 	
 	</div>
 	<form action="<c:url value="/newAccount"/>" method='GET'>
+		<h3>Les opérations pour ${currentAccount}</h3>
 		<input type='hidden' name='accountId' value='${currentAccount.id}'>
-    	<input type="submit" value='Editer le compte'>
+    	<input type="submit" class="btn btn-primary" value='Editer le compte'>
 	</form>
-	<h3>Les opérations pour ${currentAccount}</h3>
-	<table>
+	<table class="table">
 		<tbody>
 			<tr>
-				<th>Wording</th>
-				<th>Transaction Value</th>
-				<th>Operation Date</th>
-				<th>Target Transaction</th>
+				<th>Libelé</th>
+				<th>Valeur</th>
+				<th>Date</th>
+				<th>Cible</th>
 				<th>Description</th>
-				<th>Transaction Type</th>
-				<th>Category</th>
+				<th>Type de transaction</th>
+				<th>Categorie</th>
 			</tr>
 				<c:forEach items="${periodicTransaction}" var="p">
 			<tr>
@@ -46,16 +48,17 @@
 				<form method="post" action="<c:url value="/transactionList"/>">
 				<input id='transactionId' type="hidden" name="transaction" value="<c:out value="${p.id}"/>"></input>
 				<input type="hidden" name="accountId" value="<c:out value="${currentAccount.id}"/>"></input>
-				<button type="submit">Delete</button>
+				<button class="btn btn-default" type="submit">Supprimer</button>
+				<button class="btn btn-primary" id='editTransaction' onClick="$('#content').load('editTransaction?transaction='+this.value);" 
+				        value='${p.id}'>Editer</button>
+				
 				</form>
-				<button id='editTransaction' onClick="$('#content').load('editTransaction?transaction='+this.value);" 
-				        value='${p.id}'>Edit</button>
 				</td>
 			</tr>
 				</c:forEach>
 		</tbody>
 	</table>
-	<button id='redirectAccount' onClick='includeCreateTransactionJsp()' value='${currentAccount.id}'>Créer une transaction</button>	
+	<button class="btn btn-primary" id='redirectAccount' onClick='includeCreateTransactionJsp()' value='${currentAccount.id}'>Créer une transaction</button>	
 	<div id="content"></div>
 	<script type="text/javascript">
 		function includeCreateTransactionJsp(){

@@ -38,15 +38,17 @@ public class AccountServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Agency> agencies = agencyManager.findAll();
 		List<AccountType> accounttype = accountTypeManager.findAll(); 
-		Account currentAccount = accountManager.findById(Integer.valueOf(request.getParameter("accountId")));
-		if(request.getParameter("accountId")!= null){
+		Account currentAccount = new Account();
+		System.out.println(request.getParameter("accountId"));
+		if(request.getParameter("accountId") != null){
+			currentAccount = accountManager.findById(Integer.valueOf(request.getParameter("accountId")));
 			request.setAttribute("currentAccount", accountManager.findById(Integer.valueOf(request.getParameter("accountId"))));
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+			String date = sdf.format(currentAccount.getCreationDate());
+			request.setAttribute("creationDate", date);
+			request.setAttribute("agencies", agencies);
+			request.setAttribute("accounttype", accounttype);
 		}
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		String date = sdf.format(currentAccount.getCreationDate());
-		request.setAttribute("creationDate", date);
-		request.setAttribute("agencies", agencies);
-		request.setAttribute("accounttype", accounttype);
 		request.setAttribute("contextPath", getServletContext().getContextPath());
 		getServletContext().getRequestDispatcher("/createAccount.jsp").forward(request, response);
 	}
