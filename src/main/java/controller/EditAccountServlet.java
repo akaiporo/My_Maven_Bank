@@ -68,8 +68,7 @@ public class EditAccountServlet extends HttpServlet {
 				Account newAccount = new Account(accountNumber, creationDate, solde, overdraft, interest, agency, cc, accounttype, alert);
 				try{
 					accountManager.edit(newAccount, id);
-					request.setAttribute("account", id);
-					getServletContext().getRequestDispatcher("/transactionList").forward(request, response);
+					response.sendRedirect(getServletContext().getContextPath()+"/transactionList?account="+id);
 					
 				}catch(Exception e){
 					
