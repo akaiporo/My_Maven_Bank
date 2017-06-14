@@ -71,7 +71,7 @@ div#container{
 								<li><a href="#">Separated link</a></li>
 								<li><a href="#">One more separated link</a></li>
 							</ul></li>
-						<li><a href="#log out">Log out</a></li>
+						<li><a onClick='window.location.href="<c:url value="/authentification.jsp"/>"'>Log out</a></li>
 					</ul>
 				</div>
 				</div>
