@@ -54,7 +54,7 @@
 				
 				</form>
 				</td>
-			</tr>
+			</tr> 
 				</c:forEach>
 		</tbody>
 	</table>
