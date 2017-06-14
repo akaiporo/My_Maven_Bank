@@ -12,7 +12,7 @@
 		<link href="./css/bootstrap-theme.min.css" rel="stylesheet">
 	</head>
 	<body>
-	<div style="width: 50%; margin-left: 50%">
+	<div style="width: 50%; margin-left: 25%">
 		<c:choose>
 			<c:when test="${empty currentTransaction}">				
 		
@@ -29,7 +29,7 @@
 			</div>
 			<div>
 				<label>Destinataire</label>
-					<select name="slct-target">
+					<select class="form-control" name="slct-target">
 					<c:forEach items="${targets}" var="p">
 				    	<option value="${p.id}">${p}</option>
 					 </c:forEach>
@@ -49,11 +49,11 @@
 			</div>
 			<div>
 			<label>Date</label>
-			<input type="date" name="date">
+			<input class="form-control" type="date" name="date">
 			</div>
 			<div>
 				<label>Type</label>
-				<select name="slct-type">
+				<select class="form-control" name="slct-type">
 					<c:forEach items="${transactionTypes}" var="p">
 				    	<option value="${p.id}">${p}</option>
 					 </c:forEach>
@@ -63,7 +63,7 @@
 		</form>
 		</c:when>
 		<c:otherwise>
-		<form method="POST" action="<c:url value="/editTransaction"/>">
+		<form class="form-group" method="POST" action="<c:url value="/editTransaction"/>">
 		<h3>Editer une transaction</h3>
 			<input type='hidden' value="${currentTransaction.account.id}" name="account">
 			<input type='hidden' value="${currentTransaction.id}" name="id">
@@ -83,11 +83,11 @@
 					</c:otherwise>
 				</c:choose>
 				<label>Montant*</label>
-				<input name="amount" type="number" value="${amount}" step="0.01">
+				<input class="form-control" name="amount" type="number" value="${amount}" step="0.01">
 			</div>
 			<div>
 				<label>Destinataire</label>
-				<select name="slct-target">
+				<select class="form-control" name="slct-target">
 					<c:forEach items="${targets}" var="p">
 						<c:choose>
 							<c:when test="${p.id eq currentTransaction.targetTransaction.id}">
@@ -102,11 +102,11 @@
 			</div>
 			<div>
 				<label>Libellé*</label>
-				<input type="text" value="${currentTransaction.wording}" name="wording">
+				<input class="form-control" type="text" value="${currentTransaction.wording}" name="wording">
 				<label>Description</label>
-				<input type="text" value="${currentTransaction.description}" name="description">
+				<input class="form-control" type="text" value="${currentTransaction.description}" name="description">
 				<label>Categorie</label>
-				<select name="slct-category">
+				<select class="form-control" name="slct-category">
 					<c:forEach items="${categories}" var="p">
 						<c:choose>
 							<c:when test="${p.id eq currentTransaction.category.id}">
@@ -121,11 +121,11 @@
 			</div>
 			<div>
 			<label>Date</label>
-			<input type="date" value="${date}" name="date">
+			<input class="form-control" type="date" value="${date}" name="date">
 			</div>
 			<div>
 				<label>Type</label>
-				<select name="slct-type">
+				<select class="form-control" name="slct-type">
 					<c:forEach items="${transactionTypes}" var="p">
 				    	<c:choose>
 							<c:when test="${p.id eq currentTransaction.transactionType.id}">
@@ -138,7 +138,7 @@
 					 </c:forEach>
 				</select>
 			</div>
-			<button type="submit">Sauver</button>
+			<button class="btn btn-primary" type="submit">Sauver</button>
 		</form>
 			</c:otherwise>
 		</c:choose>
