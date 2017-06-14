@@ -8,7 +8,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import model.Account;
-import model.AccountAlreadyExistingException;
+import model.ItemAlreadyExistingException;
 import model.ItemDoesNotExistException;
 
 @Stateless
@@ -17,10 +17,10 @@ public class AccountManager {
 	@PersistenceContext(unitName="MyBankPersistence")
 	private EntityManager em;
 	
-	public void save(Account o) throws AccountAlreadyExistingException {
+	public void save(Account o) throws ItemAlreadyExistingException {
 		try {
 			if(this.findByAccountNumber(o.getAccountNumber()) != null){
-				throw new AccountAlreadyExistingException();
+				throw new ItemAlreadyExistingException();
 			}
 		} catch (ItemDoesNotExistException e) {
 		

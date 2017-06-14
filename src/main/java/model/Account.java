@@ -32,7 +32,7 @@ public class Account implements Serializable {
 	/* VARIABLES */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id; 
+	private Integer id; 
 	@Column(name="account_number")
 	private String account_number;
 	@Column(name="creation_date")
@@ -120,10 +120,10 @@ public class Account implements Serializable {
 	}
 	/* GETTERS & SETTERS */
 	
-	public int getId(){
+	public Integer getId(){
 		return this.id;
 	}
-	public void setId(int val){
+	public void setId(Integer val){
 		/*if(val <= 0){
 			throw new IllegalArgumentException();
 		}*/

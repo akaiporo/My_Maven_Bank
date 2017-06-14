@@ -82,7 +82,7 @@ public class TestAccount {
 	@Test
 	public void testGetId() {
 		this.account.setId(1);
-		assertEquals(1, this.account.getId());
+		assertEquals(1, this.account.getId().intValue());
 	}
 	@Test
 	public void testSetId(){

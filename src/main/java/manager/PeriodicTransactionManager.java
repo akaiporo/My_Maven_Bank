@@ -12,6 +12,7 @@ import javax.persistence.Query;
 import model.Account;
 import model.BadArgumentException;
 import model.Category;
+import model.ItemDoesNotExistException;
 import model.PeriodUnit;
 import model.PeriodicTransaction;
 import model.TargetTransaction;
@@ -25,8 +26,11 @@ public class PeriodicTransactionManager {
 	@PersistenceContext(unitName="MyBankPersistence")
 	private EntityManager em;
 	
-	public PeriodicTransaction findById(int id) {
-		return em.find(PeriodicTransaction.class, id);
+	public PeriodicTransaction findById(int id) throws ItemDoesNotExistException {
+		if(em.find(PeriodicTransaction.class, id) != null){
+			return em.find(PeriodicTransaction.class, id);
+		}
+		else throw new ItemDoesNotExistException();
 	}
 
 	

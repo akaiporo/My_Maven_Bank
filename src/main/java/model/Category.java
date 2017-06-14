@@ -28,7 +28,7 @@ public class Category implements Serializable {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
-	private int id;
+	private Integer id;
 	
 	@Column(name = "wording", nullable = false)
 	private String wording;
@@ -49,7 +49,7 @@ public class Category implements Serializable {
 		
 	}
 	
-	public int getId() { 
+	public Integer getId() { 
 		return this.id;
 	}
 	public String getWording(){
@@ -68,7 +68,7 @@ public class Category implements Serializable {
 	public void setCategory(Category cat){
 		this.category = cat;
 	}
-	public void setId(int val){
+	public void setId(Integer val){
 		if(val <= 0){
 			throw new IllegalArgumentException(); 
 		}

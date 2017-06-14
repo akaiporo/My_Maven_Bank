@@ -17,6 +17,7 @@ import manager.PeriodicTransactionManager;
 import model.Account;
 import model.BadArgumentException;
 import model.Category;
+import model.ItemDoesNotExistException;
 import model.PeriodicTransaction;
 import model.TargetTransaction;
 import model.TransactionType;
@@ -38,18 +39,27 @@ public class EditTransactionServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) 
 			throws ServletException, IOException {
-		PeriodicTransaction currentTransaction=periodicTransactionManager.findById(Integer.valueOf(req.getParameter("transaction")));
-		req.setAttribute("currentTransaction",currentTransaction);
-		SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-		String date = sdf.format(currentTransaction.getDateOperation());
-		String rdsign=periodicTransactionManager.getSign(currentTransaction.getTransactionValue());
-		req.setAttribute("date",date);
-		req.setAttribute("rdsign",rdsign);
-		req.setAttribute("amount", Math.abs(currentTransaction.getTransactionValue()));
-		req.setAttribute("targets",periodicTransactionManager.findAllTargets());
-		req.setAttribute("categories",periodicTransactionManager.findAllCategories());
-		req.setAttribute("transactionTypes",periodicTransactionManager.findAllTypes());
-		getServletContext().getRequestDispatcher("/createTransaction.jsp").forward(req, resp);
+		PeriodicTransaction currentTransaction;
+		try {
+			currentTransaction = periodicTransactionManager.findById(Integer.valueOf(req.getParameter("transaction")));
+			req.setAttribute("currentTransaction",currentTransaction);
+			SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+			String date = sdf.format(currentTransaction.getDateOperation());
+			String rdsign=periodicTransactionManager.getSign(currentTransaction.getTransactionValue());
+			req.setAttribute("date",date);
+			req.setAttribute("rdsign",rdsign);
+			req.setAttribute("amount", Math.abs(currentTransaction.getTransactionValue()));
+			req.setAttribute("targets",periodicTransactionManager.findAllTargets());
+			req.setAttribute("categories",periodicTransactionManager.findAllCategories());
+			req.setAttribute("transactionTypes",periodicTransactionManager.findAllTypes());
+			getServletContext().getRequestDispatcher("/createTransaction.jsp").forward(req, resp);
+		} catch (NumberFormatException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (ItemDoesNotExistException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	

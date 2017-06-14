@@ -16,7 +16,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import model.Account;
-import model.AccountAlreadyExistingException;
+import model.ItemAlreadyExistingException;
 import model.ItemDoesNotExistException;
 import model.AccountType;
 import model.Address;
@@ -112,7 +112,7 @@ public class AccountManagerTest extends EjbContainerTest {
 		assertThat(retrievedAccount.getAccountNumber(), is("number"));
 	}
 
-	@Test(expected=AccountAlreadyExistingException.class)
+	@Test(expected=ItemAlreadyExistingException.class)
 	public void cannotPersistAlreadyExistingAccount() throws Exception {
 		accountManager.save(this.account);
 		accountManager.save(this.account);

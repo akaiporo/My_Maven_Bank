@@ -23,7 +23,7 @@ public class PeriodicTransaction{
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	private int id;
+	private Integer id;
 	@Column(name="wording")
 	private String wording;
 	@Column(name="transaction_value")
@@ -120,10 +120,10 @@ public class PeriodicTransaction{
 	/* GETTERS & SETTERS */
 	
 	
-	public int getId(){
+	public Integer getId(){
 		return this.id;
 	}
-	public void setId(int val){
+	public void setId(Integer val){
 		if(val <= 0){
 			throw new IllegalArgumentException();
 		}

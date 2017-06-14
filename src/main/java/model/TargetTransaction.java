@@ -18,7 +18,7 @@ public class TargetTransaction {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 	
 	@Column(name="target_name")
 	private String target_name;
@@ -46,10 +46,10 @@ public class TargetTransaction {
 	}
 	
 	
-	public int getId() {
+	public Integer getId() {
 		return this.id;
 	}
-	public void setId(int val){
+	public void setId(Integer val){
 		if(val <= 0){
 			throw new IllegalArgumentException();
 		}

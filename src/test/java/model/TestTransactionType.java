@@ -21,7 +21,7 @@ public class TestTransactionType {
 	@Test
 	public void testGetId() {
 		this.tested.setId(1);
-		assertEquals(1,this.tested.getId());
+		assertEquals(1,this.tested.getId().intValue());
 	}
 
 	@Test(expected = IllegalArgumentException.class)

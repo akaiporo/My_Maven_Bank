@@ -181,7 +181,7 @@ public class TestPeriodicTransaction {
 	
 	@Test
 	public void testGetId() {
-		assertEquals(1,tested.getId());
+		assertEquals(1,tested.getId().intValue());
 	}
 	@Test (expected = IllegalArgumentException.class)
 	public void testSetId_Invalid() {

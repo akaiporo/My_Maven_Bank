@@ -7,7 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
-import model.AccountAlreadyExistingException;
+import model.ItemAlreadyExistingException;
 import model.AccountType;
 import model.Agency;
 import model.ItemDoesNotExistException;
@@ -18,7 +18,14 @@ public class AgencyManager {
 	@PersistenceContext(unitName="MyBankPersistence")
 	protected EntityManager em;
 	
-	public void save(Agency a) throws AccountAlreadyExistingException{
+	public void save(Agency a) throws ItemAlreadyExistingException{
+		try {
+			if(this.findByName(a.getAgencyName()) != null){
+				throw new ItemAlreadyExistingException();
+			}
+		} catch (ItemDoesNotExistException e) {
+		
+		}
 		em.persist(a);
 	}
 	
@@ -31,9 +38,9 @@ public class AgencyManager {
 		return items;
 	}
 	
-	public Agency findyName(String name) throws ItemDoesNotExistException{
-		Query q =  em.createQuery("SELECT a from AccountType a where a.accountType = :type", Agency.class);
-		q.setParameter("type",name);
+	public Agency findByName(String name) throws ItemDoesNotExistException{
+		Query q =  em.createQuery("SELECT a from Agency a where a.agency_name = :name", Agency.class);
+		q.setParameter("name",name);
 		try{
 			return (Agency) q.getSingleResult();
 		}
