@@ -35,4 +35,9 @@ public class CreateTransactionBean {
 	public List<TransactionType> getTypes(){
 		return periodicTransactionManager.findAllTypes();
 	}
+	
+	public String getAmountError(){
+		return "le montant doit être rempli !";
+	}
+	
 }

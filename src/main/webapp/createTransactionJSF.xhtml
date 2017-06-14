@@ -15,7 +15,10 @@
 			<h:inputHidden value="#{param['account']}" name="account"/>
 			<div>
 				<h:outputLabel for="amount">Montant*</h:outputLabel>
-				<h:inputText id="amount"  value="#{newTransaction.periodicTransaction.transactionValue}" required="true" />
+				<h:inputText id="amount"  value="#{newTransaction.periodicTransaction.transactionValue}" required="true">
+					<f:ajax event="blur" execute="amountError"/>
+				</h:inputText>
+				<h:outputText id="amountError"/>
 			</div>
 			<div>
 				<h:outputLabel for="slct-target">Destinataire</h:outputLabel>

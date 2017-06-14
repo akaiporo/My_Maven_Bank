@@ -68,6 +68,8 @@ public class CreateTransactionServlet extends HttpServlet {
 			resp.sendRedirect(req.getContextPath()+"/transactionList?account="+currentAccount.getId());
 		} 
 		catch (BadArgumentException err){
+			resp.setContentType("text/html");
+			resp.getWriter().write("<!DOCTYPE html><script>ALERT("+err+")</script></html>");
 		}
 		catch (ParseException e) {			
 		}		
