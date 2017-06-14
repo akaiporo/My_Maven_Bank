@@ -97,13 +97,19 @@ div#container {
 		<Button type="button"  class="btn btn-default" onClick='window.location.href="<c:url value="/newAccount"/>"'>Creation
 			de compte</Button>
 		<Button type="button" class="btn btn-primary"
-			onClick='window.location.href="<c:url value="/choiceAccountServlet"/>"'>Choix
+			onClick='includeChoiceAccountJsp()'>Choix
 			d'un compte</Button>
 		</div>
 		</div>
 	</section>
+	<div id='choiceAccount'></div>	
 	<script
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script src="./js/lib/bootstrap.min.js"></script>
+	<script>
+		function includeChoiceAccountJsp(){
+			$('#choiceAccount').load('choiceAccountServlet');
+		}
+	</script>
 </body>
 </html>
