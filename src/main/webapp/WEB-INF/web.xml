@@ -21,6 +21,28 @@
 		</user-data-constraint>
 	</security-constraint>
 	
+	<security-constraint>
+		<display-name>site pas sécurisé</display-name>
+		<web-resource-collection>
+			<web-resource-name>pas sécurisé</web-resource-name>
+			<url-pattern>/css/*</url-pattern>
+		</web-resource-collection>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+	
+	<security-constraint>
+		<display-name>site pas sécurisé</display-name>
+		<web-resource-collection>
+			<web-resource-name>pas sécurisé</web-resource-name>
+			<url-pattern>/js/lib/*</url-pattern>
+		</web-resource-collection>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
+	
 	<login-config>
 		<auth-method>FORM</auth-method>
 		<form-login-config>
